@@ -1,6 +1,5 @@
 import Link, { LinkProps } from "next/link";
-import React from "react";
-
+import Image from "next/image";
 const CustomLink = (props: React.ComponentProps<"a"> & LinkProps) => {
 	const href = props.href;
 	const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
@@ -18,6 +17,7 @@ const CustomLink = (props: React.ComponentProps<"a"> & LinkProps) => {
 
 const MDXComponents = {
 	a: CustomLink,
+	Image,
 };
 
 export default MDXComponents;

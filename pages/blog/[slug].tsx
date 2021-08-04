@@ -1,13 +1,37 @@
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import { getFiles, getFileBySlug } from "../../lib/mdx";
-
 import ViewsCounter from "../../components/ViewsCounter";
 import MDXComponents from "../../components/MDXComponents";
 
-const DynamicPost: NextPage = (props) => {
-	console.log(props);
-	return <>Hello World</>;
+type Prosp = {
+	frontMatter: {
+		title: string;
+		slug: string;
+		iamge: string;
+		wordCount: number;
+		readingTime: {
+			minutes: number;
+			text: string;
+			time: number;
+			words: number;
+		};
+	};
+	mdxSource: {
+		compiledSource: string;
+	};
+};
+
+const DynamicPost: NextPage<Prosp> = ({ frontMatter, mdxSource }) => {
+	// console.info(props);
+	return (
+		<div className="container px-5">
+			<h1>{frontMatter.title}</h1>
+			<article>
+				<MDXRemote {...mdxSource} components={MDXComponents} />
+			</article>
+		</div>
+	);
 };
 
 //get all posts

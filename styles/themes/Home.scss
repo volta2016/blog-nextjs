@@ -1,4 +1,6 @@
-.container {
+$color-prymary: #654bc2;
+
+.containertwo {
 	min-height: 100vh;
 	padding: 0 0.5rem;
 	display: flex;
@@ -34,7 +36,7 @@
 }
 
 .title a {
-	color: #0070f3;
+	color: $color-prymary;
 	text-decoration: none;
 }
 
@@ -93,8 +95,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-	color: #0070f3;
-	border-color: #0070f3;
+	color: $color-prymary;
+	border-color: $color-prymary;
 }
 
 .card h2 {
@@ -109,21 +111,10 @@
 }
 
 .logo {
-	height: 1em;
 	margin-left: 0.5rem;
 }
 
 /* blog */
-
-.container {
-	margin: auto;
-	max-width: 1200px;
-	width: 100%;
-}
-
-.px-5 {
-	padding: 1.25rem;
-}
 
 @media (max-width: 600px) {
 	.grid {

@@ -37,7 +37,7 @@ const Home: NextPage = (props) => {
 	);
 };
 
-//get all post
+//get all post main
 export const getStaticProps: GetStaticProps = async () => {
 	const posts = await getAllFilesFrontMatter("posts");
 	return {

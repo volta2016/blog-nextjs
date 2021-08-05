@@ -2,9 +2,18 @@ import Head from "next/head";
 import Image from "next/image";
 import { NextPage, GetStaticProps } from "next";
 import { getAllFilesFrontMatter } from "../lib/mdx";
+import Link from "../components/Link";
 
-const Home: NextPage = (props) => {
-	console.log(props);
+type Props = {
+	posts: {
+		title: string;
+		slug: string;
+		image: string;
+	}[];
+};
+
+const Home: NextPage<Props> = ({ posts }) => {
+	console.log(posts);
 
 	return (
 		<div className="container">
@@ -14,7 +23,13 @@ const Home: NextPage = (props) => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main className="main"></main>
+			<main className="main">
+				{posts.map((post) => (
+					<Link href={`/blog/${post.slug}`} key={post.slug}>
+						<h3>{post.title}</h3>
+					</Link>
+				))}
+			</main>
 
 			<footer className="footer">
 				<a

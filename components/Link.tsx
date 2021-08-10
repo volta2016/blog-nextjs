@@ -21,7 +21,7 @@ export const Link: React.FC<LinkProps> = ({
 		scroll={scroll}
 		shallow={shallow}
 	>
-		<a {...rest} />
+		<a className="cardhome" {...rest} />
 	</NextLink>
 );
 

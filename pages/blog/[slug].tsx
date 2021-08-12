@@ -1,7 +1,7 @@
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import { getFiles, getFileBySlug } from "../../lib/mdx";
-//import ViewsCounter from "../../components/ViewsCounter";
+import ViewsCounter from "../../components/ViewsCounter";
 import MDXComponents from "../../components/MDXComponents";
 
 type Prosp = {
@@ -27,6 +27,9 @@ const DynamicPost: NextPage<Prosp> = ({ frontMatter, mdxSource }) => {
 	return (
 		<div className="container">
 			<h1>{frontMatter.title}</h1>
+			<span>
+				- <ViewsCounter slug={frontMatter.slug} />
+			</span>
 			<article>
 				<MDXRemote {...mdxSource} components={MDXComponents} />
 			</article>

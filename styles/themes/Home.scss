@@ -83,7 +83,7 @@ $color-prymary: #654bc2;
 // Cardhome
 
 .cardhome {
-	padding: 1.5rem;
+	padding: 1rem;
 	border-radius: 10px;
 	transition: color 0.15s ease, border-color 0.15s ease;
 	width: 31%;
@@ -115,6 +115,14 @@ $color-prymary: #654bc2;
 .logo {
 	margin-left: 0.5rem;
 }
+
+.img {
+	border-radius: 6px;
+	object-fit: cover;
+}
+
+// .author {
+// }
 
 /* blog */
 

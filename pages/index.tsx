@@ -12,6 +12,8 @@ type Props = {
 		title: string;
 		slug: string;
 		image: string;
+		author: string;
+		nameauthor: string;
 	}[];
 };
 
@@ -36,8 +38,25 @@ const Home: NextPage<Props> = ({ posts }) => {
 			<main className="main">
 				{filteredPosts.map((post) => (
 					<Link href={`/blog/${post.slug}`} key={post.slug}>
-						<Image src={post.image} alt={post.title} width={100} height={70} />
-						<h3>{post.title}</h3>
+						<div className="d-flex">
+							<Image
+								className="img"
+								src={post.image}
+								alt={post.title}
+								width={100}
+								height={110}
+							/>
+							<div>
+								<h3>{post.title}</h3>
+								<Image
+									src={post.author}
+									alt={post.nameauthor}
+									width={16}
+									height={16}
+								/>
+								<span>VoltaDev</span>
+							</div>
+						</div>
 					</Link>
 				))}
 			</main>

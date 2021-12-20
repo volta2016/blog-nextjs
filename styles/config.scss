@@ -14,79 +14,79 @@ $remtext: 0.5rem;
 $maxcol: 12;
 // viewport brakpoint
 $vp: (
-	"sm": 540px,
-	"md": 720px,
-	"lg": 960px,
-	"xl": 1140px,
+  "sm": 540px,
+  "md": 720px,
+  "lg": 960px,
+  "xl": 1140px,
 );
 $col: (
-	"n": 16,
-	"g": 6,
+  "n": 16,
+  "g": 6,
 );
 //margenes
 
 // colores
 $colorMap: (
-	whiteweather: #fff,
-	darkBlue: #100e1d,
-	MidnightBlue: #1e213a,
-	dark: #110e3c,
-	dark2: #110e3c,
-	greylight: #e7e7eb,
-	greydark: #a09fb1,
-	greyback: #6e707a,
-	violet: #3c47e9,
-	yellow: #ffec65,
-	fahrenheit: #585676,
-	fahrenheit2: #504e6d,
-	bordercity: #616475,
-	detailscity: #88869d,
+  white: #fff,
+  dark: #000,
+  base: #c9d6ff,
+  bluesoft: #6f8ae3,
+  inter: #afbade,
+  titleblog: #2e395e,
+  softviolet: #878fab,
+  greyback: #6e707a,
+  violet: #3c47e9,
+  yellow: #ffec65,
+  fahrenheit: #585676,
+  fahrenheit2: #504e6d,
+  bordercity: #616475,
+  detailscity: #88869d,
 );
 
 $spaceMap: (
-	0: 0,
-	xxxs: $rem / 2,
-	xxs: $rem,
-	xs: $rem * 1.5,
-	s: $rem * 2,
-	m: $rem * 3,
-	l: $rem * 4,
-	xl: $rem * 6,
-	xxl: $rem * 9,
-	xxxl-a: $rem * 17,
-	xxxl: $rem * 20,
-	xxxxl: $rem * 22.5,
+  0: 0,
+  xxxs: $rem / 2,
+  xxs: $rem,
+  xs: $rem * 1.5,
+  s: $rem * 2,
+  m: $rem * 3,
+  l: $rem * 4,
+  xl: $rem * 6,
+  xxl: $rem * 9,
+  xxxl-a: $rem * 17,
+  xxxl: $rem * 20,
+  xxxxl: $rem * 22.5,
 );
 
 //font-size
 $textSizeMap: (
-	xxs: $remtext + 0.1rem,
-	//10px
-	xs: $remtext + 0.4rem,
-	//12px
-	s: $remtext * 2,
-	//16px
-	m: $remtext * 3,
-	//24px
-	l: $remtext * 4,
-	//32
-	xl: $remtext * 6,
-	//48
-	xxl: $remtext * 16,
-	//72
+  xxs: $remtext + 0.1rem,
+  //10px
+  xs: $remtext + 0.4rem,
+  //12px
+  s: $remtext * 2,
+  //16px
+  m: $remtext * 3,
+  //24px
+  l: $remtext * 4,
+  //32
+  xl: $remtext * 6,
+  //48
+  xxl: $remtext * 16,
+  //72
 );
 
 //font-weight
 $textWeightsMap: (
-	regular: 200,
-	light: 300,
-	medium: 500,
-	bold: 700,
-	bolder: 900,
+  regular: 200,
+  light: 300,
+  medium: 500,
+  bold: 700,
+  bolder: 900,
 );
 
 $tokens: (
-	color: $colorMap,
-	textSize: $textSizeMap,
-	textWeight: $textWeightsMap,
+  color: $colorMap,
+  textSize: $textSizeMap,
+  textWeight: $textWeightsMap,
 );

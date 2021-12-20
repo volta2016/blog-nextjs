@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/dist/client/image";
-import Search from "../header/Search";
 
 const Header = (props) => (
   <header>
@@ -11,7 +10,6 @@ const Header = (props) => (
         width={120}
         height={60}
       />
-      <Search {...props} />
     </div>
   </header>
 );

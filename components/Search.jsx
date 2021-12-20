@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 
 const Search = (props) => {
   console.info({ props });

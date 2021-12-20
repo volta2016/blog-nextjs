@@ -1,16 +1,11 @@
 import React from "react";
 import Image from "next/dist/client/image";
+import SocialMedia from "./SocialMedia";
 
-const Header = (props) => (
+const Header = () => (
   <header>
-    <div className="container flex-h">
-      <Image
-        src="/logo-voltadev.svg"
-        alt="Vercel Logo"
-        width={120}
-        height={60}
-      />
-    </div>
+    <Image src="/logo-voltadev.svg" alt="Vercel Logo" width={120} height={60} />
+    <SocialMedia />
   </header>
 );
 

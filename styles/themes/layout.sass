@@ -2,103 +2,93 @@
     display: grid
     grid-template-columns: minmax(300px, 459px) 1fr
     min-height: 100vh
-    @include media(lg) 
-        grid-template-columns: 1fr 
+    @include media(lg)
+        grid-template-columns: 1fr
 
-.d-flex 
+.d-flex
     display: flex
-    gap: 16px;
-    
-    
+    flex: 1 1
+    justify-content: space-between
+    align-items: center
+    flex-wrap: wrap
 
 .container
     margin: auto
     max-width: $max-width
     width: 100%
     padding: 0 1rem
-    height: 100vh;
     // @include media(xl) 
     //     max-width: 520px
 
-
-		
-
-.center-element 
-	display: flex
-	justify-content: center
-	min-height: 100vh
-
-
-        
-.flex-start 
+.center-element
     display: flex
-    align-items: flex-start
-    flex-wrap: wrap
-    
+    justify-content: center
 
-.flexd-two 
+.flex-content
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    margin: 3rem 0
+
+.flex-h
+    padding: 1rem 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.flexd-two
     flex-direction: row
 
-.imgres 
+.imgres
     width: 100%
     object-fit: contain
 
-
-    
-
-@mixin flex-d 
-    &-r 
+@mixin flex-d
+    &-r
         flex-direction: row
-    
-    &-c 
-        flex-direction: column
-    
 
-.flex-d 
+    &-c
+        flex-direction: column
+
+.flex-d
     @include flex-d
 
-
-@mixin jc 
-    &-l 
+@mixin jc
+    &-l
         justify-content: flex-start !important
-    
-    &-c 
+
+    &-c
         justify-content: center !important
-    
-    &-r 
+
+    &-r
         justify-content: flex-end !important
-    
-    &-sb 
+
+    &-sb
         justify-content: space-between !important
-    
-    &-sa 
+
+    &-sa
         justify-content: space-around !important
-     
 
-
-
-@mixin ai 
-    &-l 
+@mixin ai
+    &-l
         align-items: flex-start !important
-    
-    &-c 
+
+    &-c
         align-items: center !important
-    
-    &-r 
+
+    &-r
         align-items: flex-end !important
-    
-    &-s 
+
+    &-s
         align-items: stretch !important
-    
-    &-b 
+
+    &-b
         align-items: baseline !important
-    
 
-
-.jc 
+.jc
     @include jc
 
-.ai 
+.ai
     @include ai
 
 // gap
@@ -114,22 +104,21 @@
         padding-bottom: $gutter*$i
 
 @for $i from 0 through map-get($col, g)
-    .g-#{$i}  
+    .g-#{$i}
         @include gap($i)
-    .gy-#{$i}  
+    .gy-#{$i}
         @include gapY($i)
 
 // col layout
 
 // percentage debe estar en la function
-@function columns($columns, $total-columns) 
-    @return percentage($columns / $total-columns) 
- 
+@function columns($columns, $total-columns)
+    @return percentage($columns / $total-columns)
 
-@for $i from 0 through $maxcol 
-  .col-#{$i} 
-    width: columns($i,$maxcol)
-  
+@for $i from 0 through $maxcol
+    .col-#{$i}
+        width: columns($i,$maxcol)
+
 .col
     width: 100%
 // variable editable de 12
@@ -141,18 +130,15 @@
     $key: nth($size, 1)
     $value: nth($size, 2)
     @media screen and(min-width: $value)
-        @for $i from 1 through $maxcol 
+        @for $i from 1 through $maxcol
             .col-#{$key}-#{$i}
                 width: columns($i,$maxcol)
         @for $i from 0 through map-get($col, g)
-            .g-#{$key}-#{$i}  
+            .g-#{$key}-#{$i}
                 @include gap($i)
-            .gy-#{$key}-#{$i}  
+            .gy-#{$key}-#{$i}
                 @include gapY($i)
         .j-#{$key}
             @include jc
         .a-#{$key}
             @include ai
-        
-
-

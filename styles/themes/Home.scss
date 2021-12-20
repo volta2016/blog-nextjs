@@ -1,5 +1,3 @@
-$color-prymary: #654bc2;
-
 .containertwo {
   min-height: 100vh;
   padding: 0 0.5rem;
@@ -16,7 +14,7 @@ $color-prymary: #654bc2;
 }
 
 .title a {
-  color: $color-prymary;
+  color: map-get($colorMap, violetbase);
   text-decoration: none;
 }
 
@@ -77,9 +75,9 @@ $color-prymary: #654bc2;
 .cardhome:hover,
 .cardhome:focus,
 .cardhome:active {
-  color: $color-prymary;
-  border-color: $color-prymary;
-  box-shadow: 0 2px 5px 0 rgba(87, 33, 187, 0.6);
+  color: map-get($colorMap, softviolet);
+  border-color: map-get($colorMap, softviolet);
+  box-shadow: 0 2px 5px 0 rgba(177, 151, 225, 0.879);
 }
 
 .card h2 {

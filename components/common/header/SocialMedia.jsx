@@ -5,7 +5,7 @@ import Icon from "./Icon";
 const SocialMedia = () => {
   return (
     <div>
-      <ul>
+      <ul className="flex-d">
         {dataSocial.map((data) => (
           <Icon key={data.id} src={data.image} url={data.url} alt={data.url} />
         ))}

@@ -17,6 +17,18 @@ header {
   }
 }
 
+//rrss navabar
+.iconrrss {
+  padding: 0.8rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.iconrrss:hover {
+  box-shadow: 0 0 5px 0 map-get($colorMap, inter) inset,
+    0 0 5px 2px map-get($colorMap, inter);
+}
+
 // .Header {
 // 	height: 100%;
 // 	color: map-get($colorMap, pokeyellow);

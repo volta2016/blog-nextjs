@@ -6,7 +6,7 @@ const Search = (props) => {
 
   return (
     <div className="container center-element mb-m">
-      <h2 className="mr-m">Últimos Artículos</h2>
+      <h2 className="title-post">Últimos Artículos</h2>
       <form role="search" className="search">
         <input
           aria-label="Buscar Artículos"

@@ -5,7 +5,12 @@ const withMDX = require("@zeit/next-mdx")({
   },
 });
 
-module.exports = withMDX();
+const nextConfig = {
+  /** Tell Next that it should render MDX files as page if they're in the page directory. */
+  pageExtensions: ["js", "jsx", "mdx"],
+};
+
+module.exports = withMDX(nextConfig);
 
 module.exports = {
   reactStrictMode: true,

@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote";
 import { getFiles, getFileBySlug } from "../../lib/mdx";
 import ViewsCounter from "../../components/ViewsCounter";
 import MDXComponents from "../../components/MDXComponents";
+import Layout from "../../components/layout"
 
 type Prosp = {
 	frontMatter: {
@@ -25,15 +26,17 @@ type Prosp = {
 const DynamicPost: NextPage<Prosp> = ({ frontMatter, mdxSource }) => {
 	// console.info(props);
 	return (
-		<div className="container">
-			<h1>{frontMatter.title}</h1>
-			<span>
-				- <ViewsCounter slug={frontMatter.slug} />
-			</span>
-			<article>
-				<MDXRemote {...mdxSource} components={MDXComponents} />
+		<Layout>
+			<article className="article">
+				<h1>{frontMatter.title}</h1>
+				<span>
+					- <ViewsCounter slug={frontMatter.slug} />
+				</span>
+				<article>
+					<MDXRemote {...mdxSource} components={MDXComponents} />
+				</article>
 			</article>
-		</div>
+		</Layout>
 	);
 };
 

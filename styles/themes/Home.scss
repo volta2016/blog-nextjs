@@ -13,6 +13,14 @@
   min-height: 100vh;
 }
 
+.title-post {
+  font-size: clamp(1.5rem, 2vw, 1.8rem);
+  margin-right: 1rem;
+  @include media(smbase) {
+    margin: 1rem auto;
+  }
+}
+
 .title a {
   color: map-get($colorMap, violetbase);
   text-decoration: none;
@@ -65,11 +73,17 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   width: 31%;
-  height: 146px;
+  height: auto;
+  flex: 1 0 auto;
   border: 1px solid #eaeaea;
   color: inherit;
-  margin: 0 0.5rem;
+  margin: 0.5rem 0.5rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+  @include media(sm) {
+    padding: 0.8rem;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
 }
 
 .cardhome:hover,

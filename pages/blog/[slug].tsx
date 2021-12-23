@@ -11,6 +11,8 @@ type Prosp = {
 		slug: string;
 		iamge: string;
 		wordCount: number;
+		published: string;
+		className: string;
 		readingTime: {
 			minutes: number;
 			text: string;
@@ -27,14 +29,14 @@ const DynamicPost: NextPage<Prosp> = ({ frontMatter, mdxSource }) => {
 	// console.info(props);
 	return (
 		<Layout>
-			<article className="article">
+			<article className="container-blog">
 				<h1>{frontMatter.title}</h1>
 				<span>
-					- <ViewsCounter slug={frontMatter.slug} />
-				</span>
-				<article>
+					{" "} - <ViewsCounter slug={frontMatter.slug} /> 
+				</span> <i>{frontMatter.published}</i> 
+				<div>
 					<MDXRemote {...mdxSource} components={MDXComponents} />
-				</article>
+				</div>
 			</article>
 		</Layout>
 	);

@@ -7,7 +7,7 @@ const index = () => (
       <span className="logo">
         <Image
           src="/static/images/logo-voltadev.svg"
-          alt="Vercel Logo"
+          alt="Logo VoltaDev"
           width={100}
           height={43}
         />

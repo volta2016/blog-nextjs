@@ -9,7 +9,7 @@ type Prosp = {
 	frontMatter: {
 		title: string;
 		slug: string;
-		iamge: string;
+		image: string;
 		wordCount: number;
 		published: string;
 		className: string;

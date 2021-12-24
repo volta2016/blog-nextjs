@@ -11,8 +11,11 @@ ul {
 }
 
 a {
-  color: inherit;
+  color: map-get($colorMap, violetbase);
   text-decoration: none;
+}
+a:hover {
+  color: map-get($colorMap, violet);
 }
 
 * {
@@ -23,4 +26,13 @@ a {
 
 pre {
   border-radius: 5px;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+img {
+  width: 100%;
+  object-fit: contain;
 }

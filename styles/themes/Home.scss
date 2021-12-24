@@ -15,7 +15,7 @@
 
 .title-post {
   font-size: clamp(1.5rem, 2vw, 1.8rem);
-  margin-right: 1rem;
+  margin: 0 1rem 0 0;
   @include media(smbase) {
     margin: 1rem auto;
   }

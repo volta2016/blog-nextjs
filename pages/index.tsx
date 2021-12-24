@@ -50,8 +50,8 @@ const Home: NextPage<Props> = ({ posts }) => {
 								width={100}
 								height={110}
 							/>
-							<div className="mt-mdt-m">
-								<h3>{post.title}</h3>
+							<div>
+								<h3 className="my-xxs">{post.title}</h3>
 								<Image
 									src={post.author}
 									alt={post.nameauthor}

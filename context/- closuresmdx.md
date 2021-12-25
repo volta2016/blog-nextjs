@@ -46,3 +46,5 @@ let nombre = "Kyo";
 const saludar = (hi, name) => `${hi} ${name}`;
 saludar(saludo, nombre);
 ```
+
+<Image src="/vercel.svg" width={200} height={200} alt="Vercel Logo" />

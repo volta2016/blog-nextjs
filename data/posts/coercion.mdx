@@ -1,6 +1,6 @@
 ---
-title: "Coerción"
-image: "/static/images/mdx.jpg"
+title: "Type Coercion"
+image: "/static/images/type-coercion.jpg"
 author: "/static/images/author-voltadev.png"
 nameauthor: "voltadev"
 published: "2021-20-11"
@@ -37,8 +37,8 @@ Si ejecutas en la consola del navegador este código la salida nos muestra **tru
 
 <br />
 
-1. el primer 0 es de type number
-2. el segundo 0 es de type "string"
+1. El primer 0 es de type number
+2. El segundo 0 es de type "string"
 
 <br />
 
@@ -49,22 +49,29 @@ Por ejemplo en JAVA retorna este mensaje:
 
 <br />
 
-<i>
-  🚧 "Cuando JS compara dos valores a través de ==, uno de los valores puede
-  sufrir coerción"
-</i>
+<p>
+  <i>
+    <span className="list-icon">🚧 </span>"Cuando JS compara dos valores a
+    través de ==, uno de los valores puede sufrir coerción"
+  </i>
+</p>
 
 <br />
 
 ### Coerción: cambia automáticamente un valor de un tipo a otro.
 
-🛑 Esto conviene si lo estas aplicando a proposito, pero es potencialmente dañino si no conoces sus implicaciones
+<p>
+  <span className="list-icon">🛑</span>
+  Esto conviene si lo estas aplicando a proposito, pero es potencialmente dañino
+  si no conoces sus implicaciones
+</p>
 
 ¡El segundo valor 0 se convirtió en un número!
 entonces 0 es igual a 0 es true
 Extraño, ¿verdad? bueno acostúmbrate.
 
-👉 <i>Secretamente el 0 en string se convertio a numero </i>
+<span className="list-icon">👉 </span>
+<i>Secretamente el 0 en string se convertio a numero </i>
 
 ## 2- Las matrices también hacen ceorción
 
@@ -72,9 +79,13 @@ Extraño, ¿verdad? bueno acostúmbrate.
 0 == []; // true
 ```
 
-🤔 ¿Qué ha pasado ?
+<p>
+  <span className="list-icon">🤔 </span>¿Qué ha pasado ?
+</p>
 
-👉 Coerción de nuevo
+<p>
+  <span className="list-icon">👉 </span>Coerción de nuevo
+</p>
 
 <br />
 
@@ -97,7 +108,10 @@ Dado que nuestra matriz está vacía, ¡no tenemos nada a que unirnos! por lo ta
 [].toString(); // ""
 ```
 
-👉 Un array vacío hace coerción para un string vacío
+<p>
+  <span className="list-icon">👉 </span>
+  Un array vacío hace coerción para un string vacío
+</p>
 
 <br />
 
@@ -130,13 +144,20 @@ Esto es true
 
 <br />
 
-👉 Porque la coerción convierte esto a number
+<p>
+  <span className="list-icon">👉 </span>
+  Porque la coerción convierte esto a number
+</p>
 
-Esto es true
+<p>
+  <span className="list-icon">👉 </span>
+  Porque coerción corre 2 veces:
+</p>
 
-👉 Porque coerción corre 2 veces:
-
-👉 ToPrimitive ([])// "" da una cadena vacía 2- Entonces ToNumber ("") da 0
+<p>
+  <span className="list-icon">👉 </span>
+  ToPrimitive ([])// "" da una cadena vacía 2- Entonces ToNumber ("") da 0
+</p>
 
 <br />
 
@@ -183,3 +204,9 @@ JavaScript devuelve falso
 
 - <span className="list-icon">👀 </span> No puedes hacer ceorción si tu ocupas ===
   triple igual
+
+<br />
+
+### JavaScript es raro 😄
+
+![meme js](/static/images/meme-js.png "meme js")

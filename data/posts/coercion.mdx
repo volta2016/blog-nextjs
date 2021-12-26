@@ -6,17 +6,17 @@ nameauthor: "voltadev"
 published: "2021-20-11"
 ---
 
-Según MDN la **coerción** es la conversión automática o implicita de valores de un tipo de dato a otro <br/> **Ejemplo: de cadena de texto a número**.
+Según MDN, la **coerción** es la conversión automática o implicita de valores de un tipo de dato a otro <br/> **Ejemplo: de cadena de texto a número**.
 JavaScript es de tipado dinámico **“Duck typing”** a diferencia de otros lenguajes como **C# o Java** que son “static typed” o de tipos estáticos.
 
-El estilo de tipificación **Duck typing** no es necesario especificar el tipo de dato para las variables ya que el tipo está asociado al valor, esto, es una gran ventaja ya que podemos cambiar su valor sin ningún problema.
+En el estilo de tipificación **Duck typing** no es necesario especificar el tipo de dato para las variables ya que el tipo está asociado al valor, esto es una gran ventaja ya que podemos cambiar su valor sin ningún problema.
 
 <br />
 <br />
 
-## Hay que tener la sigiente reglas
+## Hay que tener en cuenta la siguientes reglas
 
-- <span className="list-icon">✔️</span> objects evaluado como <b>true</b>
+- <span className="list-icon">✔️</span> objects evaluados como <b>true</b>
 - <span className="list-icon">✔️</span> undefined evaluado como <b>false</b>
 - <span className="list-icon">✔️</span> null evaluado como <b>false</b>
 - <span className="list-icon">✔️</span> booleans evalúa el valor del <b>
@@ -29,7 +29,7 @@ El estilo de tipificación **Duck typing** no es necesario especificar el tipo d
 
 ## 1- Introducción a la Coerción
 
-Si ejecutas en la consola del navegador este código la salida nos muestra **true**
+Si ejecutas el siguiente código en la consola del navegador la salida nos muestra **true**
 
 ```js
 0 == "0"; //true
@@ -42,7 +42,7 @@ Si ejecutas en la consola del navegador este código la salida nos muestra **tru
 
 <br />
 
-Nunca deberían ser true en la mayoria de lenguajes se respeta eso
+Nunca deberían ser true, en la mayoria de lenguajes se respeta eso
 Por ejemplo en JAVA retorna este mensaje:
 
 **error: incomparable types: int and String** esto tiene mucho sentido. Si deseas comparar un int y String en Java, primero debe convertirlos al mismo tipo.
@@ -67,13 +67,13 @@ Por ejemplo en JAVA retorna este mensaje:
 </p>
 
 ¡El segundo valor 0 se convirtió en un número!
-entonces 0 es igual a 0 es true
+entonces si 0 es igual a 0, es true
 Extraño, ¿verdad? bueno acostúmbrate.
 
 <span className="list-icon">👉 </span>
-<i>Secretamente el 0 en string se convertio a numero </i>
+<i>Secretamente el 0 en string se convirtió a número </i>
 
-## 2- Las matrices también hacen ceorción
+## 2- Las matrices también hacen coerción
 
 ```js
 0 == []; // true
@@ -186,7 +186,7 @@ Como "0" es String y [] es Object, devuelve x == ToPrimitive ([])
 
 <br />
 
-**son cadenas, por lo que JavaScript dice que no se necesita más coerción. Es por eso que nos devuelve false.**
+**Son cadenas, por lo que JavaScript dice que no se necesita más coerción. Es por eso que nos devuelve false.**
 
 ### conclusión:
 
@@ -199,7 +199,7 @@ JavaScript devuelve falso
 
 <br />
 
-- <span className="list-icon">✔️</span> cero "string" no el igual a un string vacío
+- <span className="list-icon">✔️</span> cero "string" no es igual a un string vacío
 - <span className="list-icon">✔️</span> cero "string" no es igual a un array vacío
 
 - <span className="list-icon">👀 </span> No puedes hacer ceorción si tu ocupas ===

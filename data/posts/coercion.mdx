@@ -6,20 +6,180 @@ nameauthor: "voltadev"
 published: "2021-20-11"
 ---
 
-## Coerción
+Según MDN la **coerción** es la conversión automática o implicita de valores de un tipo de dato a otro <br/> **Ejemplo: de cadena de texto a número**.
+JavaScript es de tipado dinámico **“Duck typing”** a diferencia de otros lenguajes como **C# o Java** que son “static typed” o de tipos estáticos.
 
-Probablemente pueda que conozcas, pero si no conodes markdown sirve para dar un estilo personalizado
-a tus textos, personalmente lo ocupo para mis apuntos de programación con JavaScript y para apuntes
-de sitios de estudios donde comunmente guardo url, también para mis propios apuntes de estudios.
+El estilo de tipificación **Duck typing** no es necesario especificar el tipo de dato para las variables ya que el tipo está asociado al valor, esto, es una gran ventaja ya que podemos cambiar su valor sin ningún problema.
 
-Si bien siempre para los desarrolladores fue mas complicado incluir html en markdown has surgido
-soluciones.
+<br />
+<br />
 
-¿Que es MDX?
+## Hay que tener la sigiente reglas
 
-MDX es un formato de archivos donde puedes personalizar el contenido de texto. Permite extender Markdown con código JSX.
-Para el tema de SEO de un blog ayuda mucho gracias al tema de la semantica html5 y contenido a la hora de publicar
+- <span className="list-icon">✔️</span> objects evaluado como <b>true</b>
+- <span className="list-icon">✔️</span> undefined evaluado como <b>false</b>
+- <span className="list-icon">✔️</span> null evaluado como <b>false</b>
+- <span className="list-icon">✔️</span> booleans evalúa el valor del <b>
+    booleano
+  </b>
+- <span className="list-icon">✔️</span> numbers evalúa <b>false</b> si +0, -0, o
+  NaN, para los demás <b>true</b>
+- <span className="list-icon">✔️</span> strings evalúa <b>false</b> si un string
+  está vacío ‘’, para los demás <b>true</b>
 
-¿ Diferencias entre markdown y mdx ?
-Los 2 tienen markdown. MDX tiene componentes de react, lo que hace es buscar esos componentes y transpilar a html
-automáticamente. Cuando lo haces con Markdown viene ese string que es el lenguaje de marcado.
+## 1- Introducción a la Coerción
+
+Si ejecutas en la consola del navegador este código la salida nos muestra **true**
+
+```js
+0 == "0"; //true
+```
+
+<br />
+
+1. el primer 0 es de type number
+2. el segundo 0 es de type "string"
+
+<br />
+
+Nunca deberían ser true en la mayoria de lenguajes se respeta eso
+Por ejemplo en JAVA retorna este mensaje:
+
+**error: incomparable types: int and String** esto tiene mucho sentido. Si deseas comparar un int y String en Java, primero debe convertirlos al mismo tipo.
+
+<br />
+
+<i>
+  🚧 "Cuando JS compara dos valores a través de ==, uno de los valores puede
+  sufrir coerción"
+</i>
+
+<br />
+
+### Coerción: cambia automáticamente un valor de un tipo a otro.
+
+🛑 Esto conviene si lo estas aplicando a proposito, pero es potencialmente dañino si no conoces sus implicaciones
+
+¡El segundo valor 0 se convirtió en un número!
+entonces 0 es igual a 0 es true
+Extraño, ¿verdad? bueno acostúmbrate.
+
+👉 <i>Secretamente el 0 en string se convertio a numero </i>
+
+## 2- Las matrices también hacen ceorción
+
+```js
+0 == []; // true
+```
+
+🤔 ¿Qué ha pasado ?
+
+👉 Coerción de nuevo
+
+<br />
+
+1. Si los arrays son objects
+2. El array vacío se convierte en un string vacío
+
+<br />
+
+Nuevamente, de acuerdo con la especificación, JS primero busca el método toString de un objeto para coaccionarlo.
+
+```JavaScript
+[1, 2, 3].toString()
+
+[("hello", "world")].toString(); // "hello,world"
+```
+
+Dado que nuestra matriz está vacía, ¡no tenemos nada a que unirnos! por lo tanto...
+
+```js
+[].toString(); // ""
+```
+
+👉 Un array vacío hace coerción para un string vacío
+
+<br />
+
+"ToPrimitive de la especificación convierte a esta matriz vacía en una cadena vacía"
+
+<br />
+
+3. El string vacío luego se convierte en 0
+
+<br />
+
+No puedes inventar estas cosas. Ahora que hemos aplicado **coerción a la matriz** a "", volvemos al primer algoritmo
+
+Dado que 0 es Número y "" es Cadena, devuelve 0 == ToNumber ("")
+
+```js
+ToNumber("") retona 0.
+
+//Por lo tanto,
+0 == 0 //una vez más
+```
+
+## 3- Resumen rápido
+
+Esto es true
+
+```js
+0 == "0"; // true
+```
+
+<br />
+
+👉 Porque la coerción convierte esto a number
+
+Esto es true
+
+👉 Porque coerción corre 2 veces:
+
+👉 ToPrimitive ([])// "" da una cadena vacía 2- Entonces ToNumber ("") da 0
+
+<br />
+
+<br />
+
+¡FALSO! Correcto. Esta parte tiene sentido si entendiste las reglas.
+
+```js
+"0" == []; // false
+```
+
+<br />
+Si x es String o Number, y es Object, devuelve x == ToPrimitive (y)
+
+<br />
+
+Eso significa...
+
+<br />
+
+Como "0" es String y [] es Object, devuelve x == ToPrimitive ([])
+
+```JavaScript
+"0" == ""
+```
+
+<br />
+
+**son cadenas, por lo que JavaScript dice que no se necesita más coerción. Es por eso que nos devuelve false.**
+
+### conclusión:
+
+```JavaScript
+"0" == "" // false
+"0" == [] //false
+```
+
+JavaScript devuelve falso
+
+<br />
+
+- <span className="list-icon">✔️</span> cero "string" no el igual a un string vacío
+- <span className="list-icon">✔️</span> cero "string" no es igual a un array vacío
+
+- <span className="list-icon">👀 </span> No puedes hacer ceorción si tu ocupas ===
+  triple igual

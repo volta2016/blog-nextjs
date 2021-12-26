@@ -9,6 +9,9 @@ body {
 ul {
   list-style: none;
 }
+ol {
+  padding-left: 1rem;
+}
 
 a {
   color: map-get($colorMap, violetbase);

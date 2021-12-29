@@ -42,13 +42,18 @@ const Home: NextPage<Props> = ({ posts }) => {
 		<>
 			<Head>
 				<title>VoltaDev Blog</title>
+			<title>VoltaDev Blog</title>
+				<meta name="Blog Volta dev" content="Tips, updates new features and technologies all about the JavaScript language" />
 				<meta property="og:title" content="Tips, updates new features and technologies all about the JavaScript language" key="title" />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:creator" content="@giovanniivolta" />
+				<meta property="og:image:alt" content="Giovanni Volta Bolg - Tips, updates new features and technologies all about the JavaScript language" />
 				<meta property="og:url" content="https://blog-voltadev.vercel.app/" />
 				<meta property="og:description" content="Tips, updates new features and technologies all about the JavaScript language" />
-				<meta key="og:image" property="og:image" content={flyyer.href()} />
-        <meta key="twitter:image" name="twitter:image" content={flyyer.href()} />
-        <meta key="twitter:card" name="twitter:card" content={flyyer.href()} />
-				
+				<meta key="og:image" property="og:image" content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg" />
+        <meta key="twitter:image" name="twitter:image" content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg" />
+        <meta key="twitter:card" name="twitter:card" content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg" />
+
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			

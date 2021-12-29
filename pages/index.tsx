@@ -6,6 +6,9 @@ import { getAllFilesFrontMatter } from "../lib/mdx";
 import Layout from "../components/layout"
 import Search from "../components/Search"
 import Link from "../components/Link";
+import { useRouter } from "next/router"
+import { Flyyer } from "@flyyer/flyyer"
+
 /* import CodeTest from "../components/code/CodeTest" */
 
 type Props = {
@@ -26,7 +29,14 @@ const Home: NextPage<Props> = ({ posts }) => {
 		frontMatter.title.toLowerCase().includes(search.toLowerCase())
 	);
 
-	console.log(posts);
+	const router = useRouter();
+  const flyyer = new Flyyer({
+    project: "voltadev-blog",
+    path: [router.locale, router.asPath],
+		
+  });
+
+	// console.log(posts);
 
 	return (
 		<>
@@ -35,6 +45,11 @@ const Home: NextPage<Props> = ({ posts }) => {
 				<meta name="Blog Volta dev" content="Tips, updates new features and technologies all about the JavaScript language" />
 				<meta property="og:url" content="https://blog-voltadev.vercel.app/" />
 				<meta property="og:description" content="Tips, updates new features and technologies all about the JavaScript language" />
+				<meta key="og:image" property="og:image" content={flyyer.href()} />
+        <meta key="twitter:image" name="twitter:image" content={flyyer.href()} />
+        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
+        <meta key="flyyer:default" name="flyyer:default" content={flyyer.href()} />
+
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			

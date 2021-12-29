@@ -34,7 +34,7 @@ const Home: NextPage<Props> = ({ posts }) => {
 				<title>VoltaDev Blog</title>
 				<meta name="Blog Volta dev" content="Tips, updates new features and technologies all about the JavaScript language" />
 				<meta property="og:url" content="https://blog-voltadev.vercel.app/" />
-				<meta property="og:image" content="https://blog-voltadev.vercel.app/static/images/hero-rrss-blog-voltadev.jpg" />
+				<meta property="og:description" content="Tips, updates new features and technologies all about the JavaScript language" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			

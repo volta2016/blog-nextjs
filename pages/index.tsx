@@ -45,10 +45,10 @@ const Home: NextPage<Props> = ({ posts }) => {
 				<meta name="Blog Volta dev" content="Tips, updates new features and technologies all about the JavaScript language" />
 				<meta property="og:url" content="https://blog-voltadev.vercel.app/" />
 				<meta property="og:description" content="Tips, updates new features and technologies all about the JavaScript language" />
-				<meta key="og:image" property="og:image" content={flyyer.href()} />
-        <meta key="twitter:image" name="twitter:image" content={flyyer.href()} />
-        <meta key="twitter:card" name="twitter:card" content="summary_large_image" />
-        <meta key="flyyer:default" name="flyyer:default" content={flyyer.href()} />
+				<meta property="og:image" content="https://cdn.flyyer.io/v2/voltadev-blog/_/__v=1640794927/" />
+  			<meta name="twitter:image" content="https://cdn.flyyer.io/v2/voltadev-blog/_/__v=1640794927/" />
+  			<meta name="twitter:card" content="summary_large_image" />
+  			<meta name="flyyer:default" content="https://cdn.flyyer.io/v2/voltadev-blog/_/__v=1640794927/" />
 
 				<link rel="icon" href="/favicon.ico" />
 			</Head>

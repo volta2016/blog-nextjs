@@ -33,7 +33,7 @@ const Home: NextPage<Props> = ({ posts }) => {
   const flyyer = new Flyyer({
     project: "voltadev-blog",
     path: useRouter().asPath,
-		
+		default: "/static/images/hero-rrss-blog-voltadev.jpg",
   });
 
 	// console.log(posts);

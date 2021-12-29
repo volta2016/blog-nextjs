@@ -29,10 +29,10 @@ const Home: NextPage<Props> = ({ posts }) => {
 		frontMatter.title.toLowerCase().includes(search.toLowerCase())
 	);
 
-	const router = useRouter();
+	
   const flyyer = new Flyyer({
     project: "voltadev-blog",
-    path: [router.locale, router.asPath],
+    path: useRouter().asPath,
 		
   });
 

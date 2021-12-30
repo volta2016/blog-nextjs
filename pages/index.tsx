@@ -41,7 +41,6 @@ const Home: NextPage<Props> = ({ posts }) => {
     <>
       <Head>
         <title>VoltaDev Blog</title>
-        <title>VoltaDev Blog</title>
 
         <meta
           name="description"
@@ -49,6 +48,7 @@ const Home: NextPage<Props> = ({ posts }) => {
         />
 
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="VoltaDev Blog" />
         <meta name="twitter:site" content="giovanniivolta" />
         <meta name="twitter:creator" content="@giovanniivolta" />
         <meta property="og:url" content="https://blog-voltadev.vercel.app/" />
@@ -65,11 +65,16 @@ const Home: NextPage<Props> = ({ posts }) => {
           name="twitter:image"
           content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg"
         />
+
         <meta
+          property="twitter:description"
+          content="Tips, updates new features and technologies all about the JavaScript language"
+        />
+        {/* <meta
           property="twitter:card"
           name="twitter:card"
           content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg"
-        />
+        /> */}
 
         {/* <meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:creator" content="@giovanniivolta" />

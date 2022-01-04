@@ -1,7 +1,7 @@
 import React from "react";
 
 const Search = (props) => {
-  console.info({ props });
+  // console.info({ props });
   const { setSearch } = props;
 
   return (

@@ -18,6 +18,7 @@ type Props = {
     image: string;
     author: string;
     nameauthor: string;
+    published: string;
   }[];
 };
 
@@ -29,13 +30,9 @@ const Home: NextPage<Props> = ({ posts }) => {
     frontMatter.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  const flyyer = new Flyyer({
-    project: "voltadev-blog",
-    path: useRouter().asPath,
-    default: "/static/images/hero-rrss-blog-voltadev.jpg",
-  });
-
-  // console.log(posts);
+  // const SortedPosts = posts.sort((a, b) =>
+  //   a.published > b.published ? 1 : -1
+  // );
 
   return (
     <>
@@ -70,19 +67,6 @@ const Home: NextPage<Props> = ({ posts }) => {
           property="twitter:description"
           content="Tips, updates new features and technologies all about the JavaScript language"
         />
-        {/* <meta
-          property="twitter:card"
-          name="twitter:card"
-          content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg"
-        /> */}
-
-        {/* <meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:creator" content="@giovanniivolta" />
-				<meta property="og:image:alt" content="Giovanni Volta Blog - Tips, updates new features and technologies all about the JavaScript language" />
-			
-			>
-        <meta key="twitter:image" name="twitter:image" content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg" />
-        <meta property="twitter:card" name="twitter:card" content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg" /> */}
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -91,29 +75,31 @@ const Home: NextPage<Props> = ({ posts }) => {
         <main className="main">
           <Search setSearch={setSearch} />
           <div className="container flex-content">
-            {filteredPosts.map((post) => (
-              <Link href={`/blog/${post.slug}`} key={post.slug}>
-                <div className="d-flex">
-                  <Image
-                    className="img"
-                    src={post.image}
-                    alt={post.title}
-                    width={100}
-                    height={110}
-                  />
-                  <div>
-                    <h3 className="my-xxs">{post.title}</h3>
+            {filteredPosts
+              .sort((a, b) => (a.published > b.published ? -1 : 1))
+              .map((post) => (
+                <Link href={`/blog/${post.slug}`} key={post.slug}>
+                  <div className="d-flex">
                     <Image
-                      src={post.author}
-                      alt={post.nameauthor}
-                      width={16}
-                      height={16}
+                      className="img"
+                      src={post.image}
+                      alt={post.title}
+                      width={100}
+                      height={110}
                     />
-                    <span>VoltaDev</span>
+                    <div>
+                      <h3 className="my-xxs">{post.title}</h3>
+                      <Image
+                        src={post.author}
+                        alt={post.nameauthor}
+                        width={16}
+                        height={16}
+                      />
+                      <span>VoltaDev</span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
           </div>
         </main>
       </Layout>

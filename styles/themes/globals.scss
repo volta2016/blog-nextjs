@@ -13,6 +13,10 @@ ol {
   padding-left: 1rem;
 }
 
+pre {
+  margin: 0.9em 0 !important;
+}
+
 a {
   color: map-get($colorMap, violetbase);
   text-decoration: none;

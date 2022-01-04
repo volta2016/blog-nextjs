@@ -1,13 +1,13 @@
 import * as React from "react";
-import Head from "next/head";
+
 import Image from "next/image";
 import { NextPage, GetStaticProps } from "next";
 import { getAllFilesFrontMatter } from "../lib/mdx";
 import Layout from "../components/layout";
 import Search from "../components/Search";
 import Link from "../components/Link";
-import { useRouter } from "next/router";
-import { Flyyer } from "@flyyer/flyyer";
+// import { useRouter } from "next/router";
+// import { Flyyer } from "@flyyer/flyyer";
 
 /* import CodeTest from "../components/code/CodeTest" */
 
@@ -36,41 +36,6 @@ const Home: NextPage<Props> = ({ posts }) => {
 
   return (
     <>
-      <Head>
-        <title>VoltaDev Blog</title>
-
-        <meta
-          name="description"
-          content="Tips, updates new features and technologies all about the JavaScript language"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="VoltaDev Blog" />
-        <meta name="twitter:site" content="giovanniivolta" />
-        <meta name="twitter:creator" content="@giovanniivolta" />
-        <meta property="og:url" content="https://blog-voltadev.vercel.app/" />
-        <meta property="og:title" content="Blog Voltadev" />
-        <meta
-          property="og:description"
-          content="Tips, updates new features and technologies all about the JavaScript language"
-        />
-        <meta
-          property="og:image"
-          content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg"
-        />
-        <meta
-          name="twitter:image"
-          content="https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg"
-        />
-
-        <meta
-          property="twitter:description"
-          content="Tips, updates new features and technologies all about the JavaScript language"
-        />
-
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <Layout>
         <main className="main">
           <Search setSearch={setSearch} />

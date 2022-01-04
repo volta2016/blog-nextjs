@@ -37,8 +37,16 @@ const DynamicPost: NextPage<Prosp> = ({ frontMatter, mdxSource }) => {
         title={frontMatter.title}
         description={frontMatter.description}
         openGraph={{
-          url: `${frontMatter.cover}`,
+          url: `https://blog-voltadev.vercel.app/blog/${frontMatter.slug}`,
           site_name: "VoltaDev Blog",
+          images: [
+            {
+              url: `https://blog-voltadev.vercel.app/${frontMatter.cover}`,
+              width: 800,
+              height: 531,
+              alt: `${frontMatter.title}`,
+            },
+          ],
         }}
       />
       <Layout>

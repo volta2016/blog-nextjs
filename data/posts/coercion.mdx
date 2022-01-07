@@ -8,7 +8,7 @@ published: "11-20-2021"
 description: "Según MDN, la coerción es la conversión automática o implicita de valores de un tipo de dato a otro"
 ---
 
-Según MDN, la **coerción** es la conversión automática o implicita de valores de un tipo de dato a otro <br/> **Ejemplo: de cadena de texto a número**.
+Según MDN, la **coerción** es la conversión automática o implicita de valores de un tipo de dato a otro. <br/> **Ejemplo: de cadena de texto a número**.
 JavaScript es de tipado dinámico **“Duck typing”** a diferencia de otros lenguajes como **C# o Java** que son “static typed” o de tipos estáticos.
 
 En el estilo de tipificación **Duck typing** no es necesario especificar el tipo de dato para las variables ya que el tipo está asociado al valor, esto es una gran ventaja ya que podemos cambiar su valor sin ningún problema.
@@ -24,8 +24,8 @@ En el estilo de tipificación **Duck typing** no es necesario especificar el tip
 - <span className="list-icon">✔️</span> booleans evalúa el valor del <b>
     booleano
   </b>
-- <span className="list-icon">✔️</span> numbers evalúa <b>false</b> si +0, -0, o
-  NaN, para los demás <b>true</b>
+- <span className="list-icon">✔️</span> numbers evalúa <b>false</b> si es +0, -0,
+  o NaN, para los demás <b>true</b>
 - <span className="list-icon">✔️</span> strings evalúa <b>false</b> si un string
   está vacío ‘’, para los demás <b>true</b>
 
@@ -73,7 +73,10 @@ entonces si 0 es igual a 0, es true
 Extraño, ¿verdad? bueno acostúmbrate.
 
 <span className="list-icon">👉 </span>
-<i>Secretamente el 0 en string se convirtió a número </i>
+<i>
+  Secretamente el 0 en string se convirtió a número - type{" "}
+  <strong>number</strong>
+</i>
 
 ## 2- Las matrices también hacen coerción
 
@@ -133,7 +136,7 @@ Dado que 0 es Número y "" es Cadena, devuelve 0 == ToNumber ("")
 ToNumber("") retona 0.
 
 //Por lo tanto,
-0 == 0 //una vez más
+0 == 0 //una vez más es true
 ```
 
 ## 3- Resumen rápido
@@ -151,14 +154,22 @@ Esto es true
   Porque la coerción convierte esto a number
 </p>
 
+```js
+0 == []; // true
+```
+
 <p>
   <span className="list-icon">👉 </span>
-  Porque coerción corre 2 veces:
+  Porque la coerción corre 2 veces:
 </p>
 
 <p>
   <span className="list-icon">👉 </span>
-  ToPrimitive ([])// "" da una cadena vacía 2- Entonces ToNumber ("") da 0
+  ToPrimitive ([])// "" da una cadena vacía
+</p>
+<p>
+  <span className="list-icon">👉 </span>
+  2- Entonces ToNumber ("") da 0
 </p>
 
 <br />
@@ -210,5 +221,7 @@ JavaScript devuelve falso
 <br />
 
 ### JavaScript es raro 😄
+
+si quires aprender más sobre el lenguaje y coerción te recomiendo el siguiente link [jsisweird](https://jsisweird.com/)
 
 ![meme js](/static/images/meme-js.png "meme js")

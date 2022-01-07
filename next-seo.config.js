@@ -2,12 +2,12 @@
 export default {
   title: "VoltaDev Blog",
   description:
-    "Tips, updates new features and technologies all about the JavaScript language",
+    "Tips, updates, new features and technologies, all about the JavaScript language",
   openGraph: {
     url: "https://blog-voltadev.vercel.app/",
     title: "VoltaDev Blog",
     description:
-      "Tips, updates new features and technologies all about the JavaScript language",
+      "Tips, updates, new features and technologies, all about the JavaScript language",
     images: [
       {
         url: "https://voltauxui.cl/blog/hero-rrss-blog-voltadev.jpg",

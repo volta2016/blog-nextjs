@@ -42,8 +42,6 @@ const DynamicPost: NextPage<Prosp> = ({ frontMatter, mdxSource }) => {
           images: [
             {
               url: `https://blog-voltadev.vercel.app/${frontMatter.cover}`,
-              width: 600,
-              height: 330,
               alt: `${frontMatter.title}`,
             },
           ],

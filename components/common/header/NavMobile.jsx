@@ -2,16 +2,16 @@ import React from "react";
 import { dataSocial } from "../../../data";
 import Icon from "./Icon";
 
-const SocialMedia = () => {
+const NavMobile = ({ sidebar }) => {
   return (
-    <div>
-      <ul className="flex-d">
+    <nav className={sidebar ? "" : "show"}>
+      <ul className="flex-d social">
         {dataSocial.map((data) => (
           <Icon key={data.id} src={data.image} url={data.url} alt={data.url} />
         ))}
       </ul>
-    </div>
+    </nav>
   );
 };
 
-export default SocialMedia;
+export default NavMobile;

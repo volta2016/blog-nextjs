@@ -29,72 +29,84 @@ header {
     0 0 5px 2px map-get($colorMap, inter);
 }
 
-// .Header {
-// 	height: 100%;
-// 	color: map-get($colorMap, pokeyellow);
-// 	nav img {
-// 		height: 30px;
-// 	}
-// 	.navbar__favorite {
-// 		margin: 0 2rem;
-// 		height: 21px;
-// 		& span {
-// 			margin-left: 0.5rem;
-// 		}
-// 	}
-// 	.navbar__menu {
-// 		list-style: none;
-// 		text-decoration: none;
-// 		margin: 0 1rem;
-// 		padding: 0;
-// 		& a li {
-// 			margin-bottom: 0.4rem;
-// 			width: auto;
-// 			border-bottom: 1px solid transparent;
-// 			width: fit-content;
-// 		}
-// 		& a li:hover {
-// 			border-bottom: 1px solid #ffcb15;
-// 		}
-// 	}
-// }
+.burguer {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  height: 39px;
+  width: 50px;
+  padding: 0 11px;
+  @include media(sm) {
+    display: block;
+  }
+}
 
-// .search {
-// 	display: flex;
-// 	justify-content: center;
-// 	margin: 1rem 0;
-// 	@include media(sm) {
-// 		justify-content: space-between;
-// 	}
-// 	& input {
-// 		color: #5a3ccf;
-// 		width: 50%;
-// 		font-size: 1rem;
-// 		padding: 0.4rem;
-// 		border: 2px solid #5a3ccf;
-// 		&:focus {
-// 			outline: 0px;
-// 			box-shadow: 0px 0px 3px 0px #5a3ccf inset;
-// 		}
-// 		@include media(sm) {
-// 			width: 100%;
-// 		}
-// 	}
-// 	& button {
-// 		cursor: pointer;
-// 		outline: none;
-// 		border: 0;
-// 		background-color: map-get($colorMap, pokesearch);
-// 		border-radius: 50%;
-// 		padding: 10px 12px;
-// 		margin-left: 20px;
-// 		width: 40px;
-// 		transition: 0.3s;
-// 		&:hover {
-// 			background-color: #00abe6;
-// 		}
-// 	}
-// 	&__btn {
-// 		height: 16px;
-// 	}
-// }
+.burguer .line {
+  display: block;
+  height: 4px;
+  margin: 6px 0;
+  background-color: #4f32ba;
+  transition: transform 0.4s, background-color 0.3s;
+  border-radius: 5px;
+}
+
+.buguer .line:last-child {
+  margin-bottom: 0;
+}
+/* active burguer */
+.burguer.activetwo .line {
+  background-color: map-get($colorMap, violet);
+  margin: 0 !important;
+}
+
+.burguer.activetwo .line:first-child {
+  transform: rotate(46deg) translateY(50%) translateX(5%);
+}
+
+.burguer.activetwo .line:nth-child(2) {
+  transform: rotate(-45deg) translateY(-50%);
+}
+
+.burguer.activetwo .line:last-child {
+  display: none;
+}
+
+/*nav menu mobile*/
+nav {
+  position: absolute;
+  z-index: 1;
+  width: 250px;
+  background-color: #3c47e9f5;
+  height: 100vh;
+  left: -100%;
+  transition: 850ms;
+  box-shadow: 3px 0 4px -1px #888;
+}
+
+.show {
+  @include media(sm) {
+    left: 0;
+    transition: 350ms;
+  }
+}
+
+.show:before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 50px;
+  width: 0px;
+  height: 0px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #3c47e9f5;
+}
+
+.social {
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}

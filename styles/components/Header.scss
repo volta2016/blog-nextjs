@@ -9,12 +9,15 @@ header {
   border-radius: 30px 30px 30px 30px;
   border: 2px solid #654bc2;
   padding: 0 1rem;
-  background-color: white;
   & input {
     font-size: 14px;
     outline: none;
     border: none;
     max-width: 142px;
+    background: transparent;
+    &:focus {
+      color: #949494;
+    }
   }
 }
 
@@ -76,7 +79,7 @@ header {
 }
 
 /*nav menu mobile*/
-nav {
+.nav-mb {
   position: absolute;
   z-index: 1;
   width: 250px;
@@ -115,6 +118,7 @@ nav {
 /* Dark Mode */
 
 .darkmode {
+  margin: 0.6rem 1rem 0 0;
   display: flex;
   align-items: center;
   border-radius: 20px;
@@ -136,11 +140,11 @@ nav {
   display: inline-block;
   padding: 5px;
   box-sizing: border-box;
-  cursor: pointer;
   user-select: none;
 }
 .switch::before {
   content: "";
+  cursor: pointer;
   display: block;
   width: 20px;
   height: 20px;

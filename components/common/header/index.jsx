@@ -23,10 +23,10 @@ const Header = () => {
               />
             </a>
           </Link>
-          <div className="flex-d">
+          <nav className="flex-d">
             <DarkMode />
             <SocialMedia />
-          </div>
+          </nav>
           <MenuMobile showSideBar={showSideBar} sidebar={sidebar} />
         </div>
       </header>

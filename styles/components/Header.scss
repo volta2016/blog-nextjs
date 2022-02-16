@@ -111,3 +111,55 @@ nav {
   justify-content: space-evenly;
   margin-top: 1rem;
 }
+
+/* Dark Mode */
+
+.darkmode {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background: #5f616d;
+  height: 30px;
+  width: 60px;
+}
+.checkbox {
+  display: none;
+}
+.checkbox:checked ~ .switch::before {
+  transform: translateX(30px);
+}
+.switch {
+  position: relative;
+  right: 32px;
+  height: 30px;
+  width: 60px;
+  display: inline-block;
+  padding: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+}
+.switch::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateX(0);
+  transition: 0.3s;
+  will-change: transform;
+}
+
+.sun {
+  position: relative;
+  right: -18px;
+}
+
+.moon:before {
+  content: "\1F31C";
+}
+
+.sun:before {
+  content: "\1F31E";
+}

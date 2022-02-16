@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/dist/client/image";
+import DarkMode from "./DarkMode";
 import SocialMedia from "./SocialMedia";
 import MenuMobile from "./MenuMobile";
 import NavMobile from "./NavMobile";
@@ -22,7 +23,10 @@ const Header = () => {
               />
             </a>
           </Link>
-          <SocialMedia />
+          <div className="flex-d">
+            <DarkMode />
+            <SocialMedia />
+          </div>
           <MenuMobile showSideBar={showSideBar} sidebar={sidebar} />
         </div>
       </header>

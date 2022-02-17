@@ -118,6 +118,7 @@ header {
 /* Dark Mode */
 
 .darkmode {
+  position: relative;
   margin: 0.6rem 1rem 0 0;
   display: flex;
   align-items: center;
@@ -133,10 +134,9 @@ header {
   transform: translateX(30px);
 }
 .switch {
-  position: relative;
-  right: 32px;
+  position: absolute;
+  right: 30px;
   height: 30px;
-  width: 60px;
   display: inline-block;
   padding: 5px;
   box-sizing: border-box;
@@ -155,9 +155,13 @@ header {
   will-change: transform;
 }
 
+.moon {
+  position: absolute;
+}
+
 .sun {
-  position: relative;
-  right: -18px;
+  position: absolute;
+  right: 9px;
 }
 
 .moon:before {

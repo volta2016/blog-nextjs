@@ -41,7 +41,7 @@ const Home: NextPage<Props> = ({ posts }) => {
           <Search setSearch={setSearch} />
           <div className="container flex-content">
             {filteredPosts
-              .sort((a, b) => (a.published > b.published ? 1 : -1))
+              .sort((a, b) => (a.published > b.published ? -1 : 1))
               .map((post) => (
                 <Link href={`/blog/${post.slug}`} key={post.slug}>
                   <div className="d-flex">

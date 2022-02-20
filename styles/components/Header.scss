@@ -131,14 +131,12 @@ header {
   display: none;
 }
 .checkbox:checked ~ .switch::before {
-  transform: translateX(30px);
+  transform: translateX(32px);
 }
 .switch {
   position: absolute;
-  right: 30px;
-  height: 30px;
+  right: 32px;
   display: inline-block;
-  padding: 5px;
   box-sizing: border-box;
   user-select: none;
 }
@@ -146,17 +144,19 @@ header {
   content: "";
   cursor: pointer;
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   background: #fff;
   border-radius: 50%;
   transform: translateX(0);
   transition: 0.3s;
   will-change: transform;
+  box-shadow: inset 0px 0px 0px 0.2em #a08af1;
 }
 
 .moon {
   position: absolute;
+  left: 2px;
 }
 
 .sun {

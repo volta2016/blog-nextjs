@@ -419,8 +419,12 @@ return () => console.log(this.nombre, "return f()");
 Usábamos var, pero ahora como tenemos const lo vamos aplicar con const, ya que con var es mala práctica.
 Vamos a crear una constante que se va llamar **that**
 
-- <span className="list-icon">✅ </span> that va hacer referencia al this de la función
-  constructora{" "}
+<br />
+
+- <span className="list-icon">✅ </span> <b>that</b> va hacer referencia al this
+  de la función constructora{" "}
+
+<br />
 
 Cuando miramos esto en código, sacamos la conclusión de que lo que quiso hacer es guardar el contexto this de esta función constructora para que si después retornas una función anónima, puedas recuperar ese this
 

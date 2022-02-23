@@ -1,0 +1,439 @@
+---
+title: "This"
+image: "/static/images/this.jpg"
+cover: "/static/images/opengraph/this-cover-voltadev-blog.jpg"
+author: "/static/images/author-voltadev.png"
+nameauthor: "voltadev"
+published: "02-18-2022"
+description: "¿Qué es this en JavaScript?"
+---
+
+## "¿Qué es this en JavaScript?"
+
+> La palabra clave **this** tiene en Javascript un comportamiento diferente al de otros lenguajes, pero por lo general, su valor hace referencia al propietario de la función que la está invocando o en su defecto, al objeto donde dicha función es un método.
+
+## Palabra reservada this
+
+**this** es una palabra que hace referencia al **objeto contexto** que estamos trabajando
+
+<br />
+
+1. Lo primero que tenemos que entender cuando tenemos javascript en los navegadores:
+
+```js
+console.log(this);
+```
+
+**this** va hacer referencia al objeto global y este objeto se llama **window**
+
+<br />
+
+![ecmascript](/static/images/window.png "window")
+
+<br />
+
+si ejecutamos este código en **node JavaScript** nos va a devolver **global** que en node sería el objeto global. En node no existe **window**.
+
+<br />
+
+- Entonces si el objeto global en el navegador es window, esto validaría a true
+
+```JavaScript
+console.log(this === window); //true
+```
+
+ahora si ejecutamos el siguiente código nos va devolver en consola **contexto global**
+
+```JavaScript
+this.nombre = "Contexto global"; //creamos una variable al window
+console.log(this.nombre); //contexto global
+```
+
+---
+
+## ⭐ This ejemplos prácticos
+
+A continuación vamos a analizar el comportamiento de **this** con diferentes ejemplos.
+
+## 1. Ejemplo:
+
+```JavaScript
+this.nombre = "Contexto global";
+console.log(this.nombre);
+
+function imprimir() {
+  console.log(
+    this.nombre +
+      " sigue imprimiendo la variable global ya que seguimos en el ámbito (scope)"
+  );
+}
+
+imprimir();
+```
+
+- Lo primero que realizamos fue crear una variable al window, pero 👀 ojo, sin
+  la necesidad de crear variables con: var, const y let. Pedemos hacer lo
+  siguiente.
+
+```JavaScript
+this.nombre = "Contexto global";
+```
+
+Aquí podemos apreciar que le asignamos un nombre
+**Contexto global** esto sería window en nuestro archivo.
+
+Luego de esto, podemos ver en la consola del navegador que después de todas las propiedades y metodos tenemos a **Contexto global**
+
+<br />
+
+![ecmascript](/static/images/contexto-global.png "window")
+
+<br />
+Luego de esto creamos la función para imprimir este nombre
+
+```JavaScript
+function imprimir() {
+  console.log(
+    this.nombre +
+      " sigue imprimiendo la variable global ya que seguimos en el ámbito (scope)"
+  );
+}
+
+imprimir();
+```
+
+## Conclusiones
+
+- <span className="list-icon">✅ </span> Al ejecutar imprimir, sigue imprimiendo
+  **Contexto global** por que estamos en el ámbito general "en window para los navegadores".
+- <span className="list-icon">✅ </span> Así que sigo imprimiendo el contexto global
+  al ejecutar la función imprimir()
+
+## 2. Ejemplo:
+
+Ahora vamos analizar donde se esta ejecutando el this.name dentro de mi const **obj**
+
+```JavaScript
+this.nombre = "Contexto global";
+
+const obj = {
+  name: "Contexto Objeto",
+  imprimir: function () {
+    console.log(this.name);
+  },
+};
+
+obj.imprimir();
+```
+
+Vemos que this se esta ejecutando dentro del scope de la propiedad imprimir apuntando \*name: "Contexto Objeto", la función anónima ha sido creada dentro del contexto del objeto, por eso a la hora de llamar
+al método
+
+```JavaScript
+obj.imprimir();
+```
+
+me marca **Contexto Objeto** y no **Contexto global.**
+
+<br />
+
+Cuando nos referimos al Contexto global sería la variable que asignamos al window
+
+## 3. Ejemplo:
+
+Antes de comenzar tenemos que tener en cuenta que esto en JavaScript es un
+Scope o ambito.
+
+```JavaScript
+{
+  //bloque
+}
+```
+
+Vamos a crear un **obj2** 👀 pero ojo, la propiedad imprimir del **obj2** va va hacer referencia a la función que tenemos declarada en el **scope global**
+del archivo que es **imprimir().**
+
+```JavaScript
+console.log(this);
+
+this.nombre = "Contexto global";
+console.log(this.nombre);
+
+function imprimir() {
+  console.log(this.nombre);
+}
+
+imprimir();
+
+const obj = {
+  name: "Contexto Objeto",
+  imprimir: function () {
+    console.log(this.name);
+  },
+};
+
+obj.imprimir();
+
+const obj2 = {
+  name: "Contexto Objeto 2",
+  imprimir, // asigne como valor una función que ya estaba declarada
+};
+
+obj2.imprimir();
+```
+
+Recordemos a los **shorthand** de los objetos si el nombre de la propiedad y el nombre de la variable que guarda el valor es el mismo, simplemete lo podemos omitir.
+
+### Sin shorthand
+
+```JavaScript
+const obj2 = {
+  name: "Contexto Objeto 2",
+  imprimir: imprimir,
+};
+```
+
+### Con shorthand
+
+```JavaScript
+const obj2 = {
+  name: "Contexto Objeto 2",
+  imprimir,
+};
+```
+
+Esto es simplificación de sintaxis.
+
+## Conclusiones
+
+- <span className="list-icon">✅ </span> Resumen del ejemplo, simplemente asignamos
+  una función que ya estaba declarada
+
+- <span className="list-icon">✅ </span> Como esta función <b>imprimir()</b> ya esta
+  asignada al obj2. El contexto en donde se encuentra en este caso es this.nombre
+  es el contexto de la propiedad <b>imprimir</b> que aplicamos con el shorthand
+
+## 4. Arrow Function
+
+### ¿ Que pasa si en lugar una función anónima mejor utilizamos las arrow function ?
+
+```JavaScript
+this.nombre = "Contexto global";
+console.log(this.nombre);
+
+function imprimir() {
+  console.log(this.nombre);
+}
+
+imprimir();
+
+const obj = {
+  name: "Contexto Objeto",
+  imprimir: function () {
+    console.log(this.name);
+  },
+};
+
+obj.imprimir();
+
+const obj2 = {
+  nombre: "Contexto Objeto 2",
+  imprimir, // asigne como valor una función que ya estaba declarada
+};
+
+obj2.imprimir();
+
+// comportamiento con arrow function
+const obj3 = {
+  nombre: "Contexto Objeto 3",
+  imprimir: () => {
+    console.log(this.nombre);
+  },
+};
+
+obj3.imprimir();
+```
+
+Esto son los **console.log()** del código anterior pero nos vamos a enfocar en **obj3**
+que tiene un arrow function
+
+<br />
+
+![this](/static/images/console-this.png "this con")
+
+<br />
+
+- Esta es el console del **obj3** al invocar la arrow function
+  linea 42:
+  - <b>Contexto global</b>
+
+Aquí hay un detalle, hasta cierto punto las arrow function soluciona pero también crea conflictos.
+Aquí lo que hace una arrow function, es mantener un enlace del contexto que ha sido creado el objeto donde aparece, a diferencia de esta función anónima, que es una función como tal, maneja su propio scope.
+
+```JavaScript
+const obj = {
+  name: "Contexto Objeto",
+  imprimir: function () {
+    console.log(this.name);
+  },
+};
+
+obj.imprimir();
+```
+
+### Las arrow function no manejan su propio scope
+
+El contexto de la palabra this, lo que hace es tomarlo directamente del padre del objeto en el que se ha creado **es por eso que no esta imprimiendo el contexto global.** Esto enlaza el contexto de padre al hijo, es muy similar a lo que hace el método **bind,** de hecho el método **call** **apply** y **bind** están muy relacionados al método this, entonces esa es una de las características por las cuales cuando estás trabajando en la creación de un objeto y dentro de ese objeto tienen propiedades, tienes métodos y esos métodos van a interactuar con propiedades de objeto literal.
+**NO** se recomienda que utilices **arrow function** si no utilizas funciones anónimas.
+
+¿ Por qué ?
+
+> > Las arrow function no crean un scope, se salta el scope en que ha sido creado, obedece al contexto global en el cual ha sido creado el objeto
+
+Por eso es que **obj3.imprimir();** en este caso como obj3 ha sido creado en el contexto global, por es que nos esta imprimiendo:
+
+- <span className="list-icon">🌟</span> <b>Contexto Global</b>
+- <span className="list-icon">🌟</span> <b>obj3</b> fue creado en dicho contexto
+
+- <span className="list-icon">🌟</span> <b>las arrow function</b> no generan scope
+  a diferencia de las funciones anónimas
+
+## 5. función constructora que crea su propio scope
+
+Vamos a crear una función constructora que se va llamar **Persona**, persona va recibir un nombre dentro, le vamos a decir **this.nombre = nombre;**
+
+Luego vamos a retornar el <span>**console.log(this.nombre);**</span>
+en parte final del código a una variable le asignamos una instancia de Persona y le pasamos un nombre como argumento.
+
+```JavaScript
+function Persona(nombre) {
+  this.nombre = nombre;
+  return console.log(this.nombre);
+}
+
+let kyo = new Persona("Kyo");
+```
+
+Que pasa si en vez de retornar el console.log() su ejecución,
+probamos otra sintaxis pero antes:
+
+👀 Recordemos que las funciones son ciudadanos de primera clase
+sirven para crear:
+
+- <span className="list-icon">✅ </span> objetos
+- <span className="list-icon">✅ </span> prototipos
+- <span className="list-icon">✅ </span> se pueden pasar como parametros
+- <span className="list-icon">✅ </span> las podemos retornar como el resultado de
+  otra función
+
+Eso en el mundo de la programación en javascript se conoce como **clausura o closure**
+porque estamos envolviendo un función dentro de una función y la estamos retornando.
+
+retomando lo que vamos a retornar dentro de Persona, vamos crear una función anónima y la mandamos en el return, luego esa función ejecuta la linea
+del console.log()
+
+```JavaScript
+function Persona(nombre) {
+  this.nombre = nombre;
+  // return console.log(this.nombre);
+  return function () {
+    console.log(this.nombre);
+  };
+}
+
+let kyo = new Persona("Kyo");
+```
+
+Vemos que esto es solo la declaración de una función anónima
+
+```JavaScript
+return function () {
+  console.log(this.nombre);
+};
+```
+
+para que esto se invoque yo tendriamos que ejecutar la instancia de Persona, que este caso es la variable kyo
+
+```JavaScript
+kyo();
+```
+
+vamos a ejecutarla como método, porque finalmente esta retornando un función
+
+```JavaScript
+function Persona(nombre) {
+  this.nombre = nombre;
+  //return console.log(this.nombre);
+  return function () {
+    console.log(this.nombre, "return f()");
+  };
+}
+
+let kyo = new Persona("Kyo");
+kyo();
+```
+
+Vamos a ver que me retorna en consola
+
+```JavaScript
+Contexto global
+```
+
+### Ahora ¿ por qué me está diciendo Contexto global ?
+
+Recapitulemos que cada función crea un contexto salvo las arrow function que heredan el contexto en el cual ha sido creada.
+
+- ¿ Que pasa aquí ? la función constructora tiene su propio scope y le estoy pasando como argumento un nombre
+  <br />
+- Dentro de la función constructora estoy asignando una variable, **this.nombre = nombre;** es igual al nombre que recibe como parámetro
+
+Entonces cuando ejecutamos este directamente al return **si existe**
+
+```JavaScript
+return console.log(this.nombre);
+```
+
+Esta nueva función anónima crea un nuevo scope, crea un nuevo contexto internamente, no tiene ninguna propiedad nombre
+
+```JavaScript
+return function () {
+  console.log(this.nombre, "return f()");
+};
+```
+
+Entonces como no tiene un propiedad nombre, lo único que hace es regresar y leer el this del Contexto Global
+por eso en consola nos muestra **Contexto global** en lugar de **Kyo**
+
+¿ Cuál sería la solución con Ecmascript 2015 en lugar de tenerlo en una función anónima ?
+
+🧠 Recordemos que las arrow function no crean scope interno
+
+Entonces en lugar de retornarlo como una función anónima la **retornamos como una arrow function**
+
+```JavaScript
+return () => console.log(this.nombre, "return f()");
+```
+
+### Antes de las que existieran las arrow function de esta forma los solucionamos
+
+Usábamos var, pero ahora como tenemos const lo vamos aplicar con const, ya que con var es mala práctica.
+Vamos a crear una constante que se va llamar **that**
+
+- <span className="list-icon">✅ </span> that va hacer referencia al this de la función
+  constructora{" "}
+
+Cuando miramos esto en código, sacamos la conclusión de que lo que quiso hacer es guardar el contexto this de esta función constructora para que si después retornas una función anónima, puedas recuperar ese this
+
+```JavaScript
+function PersonaTwo(nombre) {
+  const that = this; // es igual al this de la función
+  that.nombre = nombre;
+  //return console.log(this.nombre);
+  return function () {
+    console.log(that.nombre, "that solution");
+  };
+}
+
+let asuka = new PersonaTwo("Asuka");
+asuka();
+```

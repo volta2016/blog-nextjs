@@ -15,7 +15,7 @@
 # production
 /build
 /ghost
-test
+
 
 # misc
 .DS_Store

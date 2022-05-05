@@ -32,7 +32,7 @@ console.log(this);
 
 <br />
 
-si ejecutamos este código en **node JavaScript** nos va a devolver **global** que en node sería el objeto global. En node no existe **window**.
+si ejecutamos este código en **node** nos va a devolver **global** que en node sería el objeto global. En node no existe **window**.
 
 <br />
 
@@ -46,7 +46,7 @@ ahora si ejecutamos el siguiente código nos va devolver en consola **contexto g
 
 ```JavaScript
 this.nombre = "Contexto global"; //creamos una variable al window
-console.log(this.nombre); //contexto global
+console.log(this.nombre); //Contexto global
 ```
 
 ---
@@ -79,7 +79,7 @@ imprimir();
 this.nombre = "Contexto global";
 ```
 
-Aquí podemos apreciar que le asignamos un nombre
+Aquí podemos apreciar que le asignamos un nombre ▶️
 **Contexto global** esto sería window en nuestro archivo.
 
 Luego de esto, podemos ver en la consola del navegador que después de todas las propiedades y metodos tenemos a **Contexto global**
@@ -89,7 +89,7 @@ Luego de esto, podemos ver en la consola del navegador que después de todas las
 ![ecmascript](/static/images/contexto-global.png "window")
 
 <br />
-Luego de esto creamos la función para imprimir este nombre
+Luego de esto creamos la función y la invocamos para imprimir este nombre
 
 ```JavaScript
 function imprimir() {
@@ -104,10 +104,13 @@ imprimir();
 
 ## Conclusiones
 
-- <span className="list-icon">✅ </span> Al ejecutar imprimir, sigue imprimiendo
-  **Contexto global** por que estamos en el ámbito general "en window para los navegadores".
+- <span className="list-icon">✅ </span> Al ejecutar imprimir, sigue imprimiendo <b>
+    Contexto global
+  </b> por que estamos en el ámbito general <b>
+    "en window para los navegadores".
+  </b>{" "}
 - <span className="list-icon">✅ </span> Así que sigo imprimiendo el contexto global
-  al ejecutar la función imprimir()
+  al ejecutar la función <b>imprimir()</b>
 
 ## 2. Ejemplo:
 
@@ -126,7 +129,7 @@ const obj = {
 obj.imprimir();
 ```
 
-Vemos que this se esta ejecutando dentro del scope de la propiedad imprimir apuntando \*name: "Contexto Objeto", la función anónima ha sido creada dentro del contexto del objeto, por eso a la hora de llamar
+Vemos que this se esta ejecutando dentro del scope de la propiedad imprimir apuntando **name:** "Contexto Objeto", la función anónima ha sido creada dentro del contexto del objeto, por eso a la hora de llamar
 al método
 
 ```JavaScript
@@ -156,11 +159,11 @@ del archivo que es **imprimir().**
 ```JavaScript
 console.log(this);
 
-this.nombre = "Contexto global";
-console.log(this.nombre);
+this.name = "Contexto global";
+console.log(this.name);
 
 function imprimir() {
-  console.log(this.nombre);
+  console.log(this.name);
 }
 
 imprimir();
@@ -176,13 +179,13 @@ obj.imprimir();
 
 const obj2 = {
   name: "Contexto Objeto 2",
-  imprimir, // asigne como valor una función que ya estaba declarada
+  imprimir // asigne como valor una función que ya estaba declarada
 };
 
 obj2.imprimir();
 ```
 
-Recordemos a los **shorthand** de los objetos si el nombre de la propiedad y el nombre de la variable que guarda el valor es el mismo, simplemete lo podemos omitir.
+Recordemos a los **Shorthand Method Names** de los objetos si el nombre de la propiedad y el nombre de la variable o método que guarda el valor es el mismo, simplemente lo podemos omitir.
 
 ### Sin shorthand
 
@@ -218,11 +221,11 @@ Esto es simplificación de sintaxis.
 ### ¿ Que pasa si en lugar una función anónima mejor utilizamos las arrow function ?
 
 ```JavaScript
-this.nombre = "Contexto global";
-console.log(this.nombre);
+this.name = "Contexto global";
+console.log(this.name);
 
 function imprimir() {
-  console.log(this.nombre);
+  console.log(this.name);
 }
 
 imprimir();
@@ -237,7 +240,7 @@ const obj = {
 obj.imprimir();
 
 const obj2 = {
-  nombre: "Contexto Objeto 2",
+  name: "Contexto Objeto 2",
   imprimir, // asigne como valor una función que ya estaba declarada
 };
 
@@ -245,9 +248,9 @@ obj2.imprimir();
 
 // comportamiento con arrow function
 const obj3 = {
-  nombre: "Contexto Objeto 3",
+  name: "Contexto Objeto 3",
   imprimir: () => {
-    console.log(this.nombre);
+    console.log(this.name);
   },
 };
 
@@ -263,12 +266,16 @@ que tiene un arrow function
 
 <br />
 
-- Esta es el console del **obj3** al invocar la arrow function
+- Este es el console del **obj3** al invocar la arrow function
   linea 42:
   - <b>Contexto global</b>
 
-Aquí hay un detalle, hasta cierto punto las arrow function soluciona pero también crea conflictos.
-Aquí lo que hace una arrow function, es mantener un enlace del contexto que ha sido creado el objeto donde aparece, a diferencia de esta función anónima, que es una función como tal, maneja su propio scope.
+<br />
+
+Aquí hay un detalle, hasta cierto punto las arrow function soluciona pero también
+crea conflictos. Aquí lo que hace una arrow function, es mantener **un enlace del contexto**
+que ha sido creado el objeto donde aparece, a diferencia de esta función anónima,
+que es una función como tal, maneja su propio scope.
 
 ```JavaScript
 const obj = {
@@ -283,14 +290,18 @@ obj.imprimir();
 
 ### Las arrow function no manejan su propio scope
 
-El contexto de la palabra this, lo que hace es tomarlo directamente del padre del objeto en el que se ha creado **es por eso que no esta imprimiendo el contexto global.** Esto enlaza el contexto de padre al hijo, es muy similar a lo que hace el método **bind,** de hecho el método **call** **apply** y **bind** están muy relacionados al método this, entonces esa es una de las características por las cuales cuando estás trabajando en la creación de un objeto y dentro de ese objeto tienen propiedades, tienes métodos y esos métodos van a interactuar con propiedades de objeto literal.
+El contexto de la palabra this, lo que hace es tomarlo directamente del padre del objeto en el que se ha creado **es por eso que esta imprimiendo el contexto global.** Esto enlaza el contexto de padre al hijo, es muy similar a lo que hace el método **bind,** de hecho el método **call** **apply** y **bind** están muy relacionados al método this, entonces esa es una de las características por las cuales cuando estás trabajando en la creación de un objeto y dentro de ese objeto tienen propiedades, tienes métodos y esos métodos van a interactuar con propiedades de objeto literal.
 **NO** se recomienda que utilices **arrow function** si no utilizas funciones anónimas.
+
+<br />
 
 ¿ Por qué ?
 
-> > Las arrow function no crean un scope, se salta el scope en que ha sido creado, obedece al contexto global en el cual ha sido creado el objeto
+<br />
 
-Por eso es que **obj3.imprimir();** en este caso como obj3 ha sido creado en el contexto global, por es que nos esta imprimiendo:
+Las arrow function no crean un scope, se salta el scope en que ha sido creado, obedece al contexto global en el cual ha sido creado el objeto
+
+Por eso es que **obj3.imprimir();** en este caso como obj3 ha sido creado en el contexto global, por eso que nos esta imprimiendo:
 
 - <span className="list-icon">🌟</span> <b>Contexto Global</b>
 - <span className="list-icon">🌟</span> <b>obj3</b> fue creado en dicho contexto
@@ -306,6 +317,8 @@ Luego vamos a retornar el <span>**console.log(this.nombre);**</span>
 en parte final del código a una variable le asignamos una instancia de Persona y le pasamos un nombre como argumento.
 
 ```JavaScript
+this.name = "Contexto global";
+
 function Persona(nombre) {
   this.nombre = nombre;
   return console.log(this.nombre);
@@ -320,11 +333,15 @@ probamos otra sintaxis pero antes:
 👀 Recordemos que las funciones son ciudadanos de primera clase
 sirven para crear:
 
+<br />
+
 - <span className="list-icon">✅ </span> objetos
 - <span className="list-icon">✅ </span> prototipos
 - <span className="list-icon">✅ </span> se pueden pasar como parametros
 - <span className="list-icon">✅ </span> las podemos retornar como el resultado de
   otra función
+
+<br />
 
 Eso en el mundo de la programación en javascript se conoce como **clausura o closure**
 porque estamos envolviendo un función dentro de una función y la estamos retornando.
@@ -333,6 +350,8 @@ retomando lo que vamos a retornar dentro de Persona, vamos crear una función an
 del console.log()
 
 ```JavaScript
+this.name = "Contexto global";
+
 function Persona(nombre) {
   this.nombre = nombre;
   // return console.log(this.nombre);
@@ -361,6 +380,8 @@ kyo();
 vamos a ejecutarla como método, porque finalmente esta retornando un función
 
 ```JavaScript
+this.name = "Contexto global";
+
 function Persona(nombre) {
   this.nombre = nombre;
   //return console.log(this.nombre);
@@ -412,6 +433,19 @@ Entonces en lugar de retornarlo como una función anónima la **retornamos como 
 
 ```JavaScript
 return () => console.log(this.nombre, "return f()");
+```
+
+```JavaScript
+this.name = "Contexto global";
+
+function Persona(nombre) {
+  this.nombre = nombre;
+  //return console.log(this.nombre);
+  return () => console.log(this.nombre, "return f()");
+}
+
+let kyo = new Persona("Kyo");
+kyo();
 ```
 
 ### Antes de las que existieran las arrow function de esta forma los solucionamos

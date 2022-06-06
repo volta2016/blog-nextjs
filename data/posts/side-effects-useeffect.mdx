@@ -101,6 +101,63 @@ function Example() {
 
 <br />
 
+Cuando pasamos un arreglo vacío, **useEffect sólo se ejecutará una vez luego del primer render.**
+
+Por último, si una función se retorna del efecto, ésta se ejecutará luego del último render una vez
+que el componente desaparezca de la interfaz.
+
+## Side Effects y useEffect 😎 ¿ Cuándo se ejecuta ?
+
+El principal objetivo de react es proporcionar la mejor experiencia de usuario posible y para eso
+hay que ser capaces de distinguir entre lo que es "importante y lo que es necesario" entre lo prioritario
+y lo que puede esperar
+
+<br />
+
+**"La prioridad máxima de una aplicación" es reaccionar ante las acciones del usuario y proporcionar una respuesta visual rápida y efectiva, esta respuesta visual implica realizar cambios sobre nuestra interfaz y para hacerlo sabemos que tenemos que provocar un renderizado que al final terminara de ACTUALIZAR EL DOM, pero esto no es lo único que debe que hacer una aplicación**
+
+<br />
+
+Podemos establecer una premisa que la prioridad máxima cuando el usuario realiza una búsqueda
+es ofrecer esta respuesta oficial inmediata mostrando este spiner
+
+<br />
+
+![spinner](/static/images/spinner.png "spinner")
+
+<br />
+
+a continuación y como consecuencia de esta busquedad hay varias tareas adicionales, que nuestra App
+debe realizar que si bien no son tan importante, como esta primera estapa son completamente necesarias, para que
+funcione completamente ejemplo de estas tareas:
+
+<br />
+
+- <span className="list-icon">✅ </span> añadir un query string a esta URL -> Cambiar
+  URL
+- <span className="list-icon">✅ </span> cambiar el título de la pestaña -> Cambiar
+  título
+- <span className="list-icon">✅ </span> realizar la petición a la API para obtener
+  los resultados -> API de búsqueda
+- <span className="list-icon">✅ </span>registrar las métricas en nuestro
+  servidor
+
+<br />
+
+![spinner](/static/images/consecuencias-useEffect.png)
+
+<br />
+
+Desde el punto de vista del **usuario** todas estas acciones son secundarias.
+
+<br />
+
+Desde del punto de vista del **desarrollador** son efectos secundarios **(side effects)** de la
+acción principal, para poderlos gestionarlos correctamente react nos proporciona el Hook de **useEffect "hook para efectos secundarios"**
+pero ante de ver como funciona hay entender a que nos referimos cuando hablamos de side effects
+
+## Side effects
+
 <!-- ![primer-commit](/static/images/primer-commit.png "fork star")
 
 <br />

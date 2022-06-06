@@ -1,0 +1,120 @@
+---
+title: "Side Effects - useEffect"
+image: "/static/images/side-effects-useeffect.jpg"
+cover: "/static/images/opengraph/side-effects-useeffect.jpg"
+author: "/static/images/author-voltadev.png"
+nameauthor: "voltadev"
+published: "06-06-2022"
+description: "Side Effects useEffect a detalle"
+---
+
+# Side Effects - useEffect
+
+> Hola bienvenido al blog 😀 este post lo voy dividir en 2, para poder entender a profundidad lo que
+> es un side Effects y el hook useEffect
+
+## Efectos secundarios (Side Effects)
+
+En programación, llamamos efectos secundarios a las modificaciones que alteran el
+estado de nuestro programa. Vamos a verlo en términos prácticos comparando dos funciones:
+
+```js
+(x,y) => x + y
+
+nombre = “”;
+(value) => nombre = value;
+```
+
+<br />
+
+Decimos que la primera función no produce efectos secundarios, porque la ejecución de
+la misma no altera nada fuera del alcance de esta función, podemos ejecutar esta función
+cuantas veces queramos, y nada cambiará.
+
+<br />
+
+Por otro lado, la segunda función cambia una variable fuera de la ejecución de la
+función, alterando el estado de la app. Este es un efecto secundario.
+
+<br />
+
+Cuando hablamos de React, si el componente ejecuta una operación que altera el estado
+global de la app, estaríamos produciendo un efecto secundario, en general, un componente
+debe hacer operaciones que alteren al componente mismo, y no más. Por supuesto que
+hay muchas excepciones, sin embargo, hay que tener en cuenta que el código que no
+produce efectos secundarios es menos impredecible y más fácil de debuggear.
+
+<br />
+
+Algunos ejemplos de efectos secundarios en un componente pueden ser, realizar peticiones
+a un servidor con AJAX, alterar el DOM manualmente, conectarse a una websocket, etc.
+
+<br />
+
+En un componente funcional, estas operaciones no se pueden ejecutar, ya que las funciones
+de un componente, no producen efectos secundarios.
+
+<br />
+
+Para poder ejecutar operaciones que produzcan efectos secundarios, podemos usar el
+hook **useEffect.**
+
+<br />
+
+**useEffect** nos permite enviar una función que se ejecutará luego del render de
+una función, esta función puede producir efectos secundarios, de ahí el nombre del
+**hook useEffect.**
+
+<br />
+
+## En términos prácticos, useEffect es el lugar perfecto para:
+
+- <span className="list-icon">✅ </span> <b>
+    Ejecutar código como parte del ciclo de vida del componente
+  </b>
+- <span className="list-icon">✅ </span> <b>Hacer peticiones AJAX</b>
+- <span className="list-icon">✅ </span> <b>
+    Actualizar el DOM directamente, por ejemplo para reproducir un vídeo
+  </b>
+- <span className="list-icon">✅ </span> <b>Logging de cambios</b>
+
+<br />
+
+**useEffect** recibe como segundo argumento después de la primer función un arreglo.
+En este arreglo puedes pasar variables que se usarán para determinar si el efecto debe ejecutarse o no.
+En la documentación de React podemos ver un muy buen ejemplo:
+
+```jsx import React, {(useState, useEffect)} from "react";
+function Example() {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  }, [count]); // Solo se ejecuta si count cambió entre un render y otro
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
+}
+```
+
+<br />
+
+<!-- ![primer-commit](/static/images/primer-commit.png "fork star")
+
+<br />
+
+📚 [git - la guía sencilla](https://rogerdudler.github.io/git-guide/index.es.html "git - la guía sencilla")
+
+<br />
+
+## 🤩 Star y Fork ⭐
+
+Contento que este repositorio ya le ha servido a 28 personas, con eso estoy mas que pagado, el poder ayudar a esas personas que recién comienzan con git, ya que al principio hay muchos conceptos que no entendemos. Si quieres puedes
+compartir este repo con amigos que recién parten con git y dejarlo en alguna comunidad de discord donde hablen respecto a git.
+Gracias por los star y fork. Siéntete libre de compartir el repositorio, la idea es difundir todo lo que ha otros les pueda ayudar. -->
+
+```
+
+```

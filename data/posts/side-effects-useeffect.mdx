@@ -8,9 +8,7 @@ published: "06-06-2022"
 description: "Side Effects useEffect a detalle"
 ---
 
-# Side Effects - useEffect
-
-> Hola bienvenido al blog 😀 este post lo voy dividir en 2, para poder entender a profundidad lo que
+> Hola bienvenidos al blog 😀 este post lo voy dividir en 2 para poder explicar a profundidad lo que
 > es un side Effects y el hook useEffect
 
 ## Efectos secundarios (Side Effects)
@@ -28,25 +26,25 @@ nombre = “”;
 <br />
 
 Decimos que la primera función no produce efectos secundarios, porque la ejecución de
-la misma no altera nada fuera del alcance de esta función, podemos ejecutar esta función
-cuantas veces queramos, y nada cambiará.
+la misma no altera nada fuera del alcance de esta función. Podemos ejecutar esta función
+cuantas veces queramos y nada cambiará.
 
 <br />
 
 Por otro lado, la segunda función cambia una variable fuera de la ejecución de la
-función, alterando el estado de la app. Este es un efecto secundario.
+función, alterando el estado de la App. Este es un efecto secundario.
 
 <br />
 
 Cuando hablamos de React, si el componente ejecuta una operación que altera el estado
-global de la app, estaríamos produciendo un efecto secundario, en general, un componente
+global de la app, estaríamos produciendo un efecto secundario. En general, un componente
 debe hacer operaciones que alteren al componente mismo, y no más. Por supuesto que
 hay muchas excepciones, sin embargo, hay que tener en cuenta que el código que no
 produce efectos secundarios es menos impredecible y más fácil de debuggear.
 
 <br />
 
-Algunos ejemplos de efectos secundarios en un componente pueden ser, realizar peticiones
+Algunos ejemplos de efectos secundarios en un componente pueden ser: realizar peticiones
 a un servidor con AJAX, alterar el DOM manualmente, conectarse a una websocket, etc.
 
 <br />
@@ -62,7 +60,7 @@ hook **useEffect.**
 <br />
 
 **useEffect** nos permite enviar una función que se ejecutará luego del render de
-una función, esta función puede producir efectos secundarios, de ahí el nombre del
+una función. Esta función puede producir efectos secundarios, de ahí el nombre del
 **hook useEffect.**
 
 <br />
@@ -80,8 +78,8 @@ una función, esta función puede producir efectos secundarios, de ahí el nombr
 
 <br />
 
-**useEffect** recibe como segundo argumento después de la primer función un arreglo.
-En **este arreglo puedes pasar variables que se usarán para determinar si el efecto debe ejecutarse o no.**
+**useEffect** recibe como segundo argumento que es un arreglo.
+En **este arreglo pueden pasar variables que se usarán para determinar si el efecto debe ejecutarse o no.**
 En la documentación de React podemos ver un muy buen ejemplo:
 
 ```jsx import React, {(useState, useEffect)} from "react";
@@ -114,11 +112,11 @@ y lo que puede esperar.
 
 <br />
 
-**"La prioridad máxima de una aplicación" es reaccionar ante las acciones del usuario y proporcionar una respuesta visual rápida y efectiva, esta respuesta visual implica realizar cambios sobre nuestra interfaz y para hacerlo sabemos que tenemos que provocar un renderizado que al final terminara de ACTUALIZAR EL DOM, pero esto no es lo único que debe que hacer una aplicación**
+**"La prioridad máxima de una aplicación" es reaccionar ante las acciones del usuario y proporcionar una respuesta visual rápida y efectiva, esta respuesta visual implica realizar cambios sobre nuestra interfaz y para hacerlo sabemos que tenemos que provocar un renderizado que al final terminará de ACTUALIZAR EL DOM, pero esto no es lo único que debe hacer una aplicación**
 
 <br />
 
-Podemos establecer una premisa que la prioridad máxima cuando el usuario realiza una búsqueda
+Podemos establecer una premisa, que la prioridad máxima cuando el usuario realiza una búsqueda,
 es ofrecer esta respuesta oficial inmediata mostrando este spiner.
 
 <br />
@@ -127,9 +125,9 @@ es ofrecer esta respuesta oficial inmediata mostrando este spiner.
 
 <br />
 
-a continuación y como consecuencia de esta busquedad hay varias tareas adicionales, que nuestra App
-debe realizar que si bien no son tan importante, como esta primera estapa son completamente necesarias, para que
-funcione completamente ejemplo de estas tareas:
+A continuación y como consecuencia de esta busqueda hay varias tareas adicionales que nuestra App
+debe realizar, que si bien no son tan importantes, en esta primera estapa son completamente necesarias, para que
+funcione completamente. Ejemplos de estas tareas:
 
 <br />
 
@@ -153,8 +151,8 @@ Desde el punto de vista del **usuario** todas estas acciones son secundarias.
 <br />
 
 Desde del punto de vista del **desarrollador** son efectos secundarios **(side effects)** de la
-acción principal, para poderlos gestionarlos correctamente react nos proporciona el Hook de **useEffect "hook para efectos secundarios"**
-pero ante de ver como funciona hay entender a que nos referimos cuando hablamos de side effects.
+acción principal, para poder gestionarlos correctamente. React nos proporciona el Hook de **useEffect "hook para efectos secundarios"**
+pero antes de ver como funciona hay que entender a que nos referimos cuando hablamos de side effects.
 
 ## Side effects
 
@@ -167,7 +165,7 @@ Consecuencia de otras acciones -> en este caso como consecuencia de un cambio de
 
 - <span className="list-icon">☑️ </span> El orden en que se ejecutan es irrelevante
 
-- <span className="list-icon">☑️ </span> implicaciones externas
+- <span className="list-icon">☑️ </span> Implicaciones externas
 
 <br />
 
@@ -181,7 +179,7 @@ En este caso podemos actualizar:
 
 <br />
 
-O puede ser al revés su orden, el resultado final sería el mismo y tendría implicaciones externas a la propia función que los define, mientras que un renderizado debería afectar sólo o al nodo que se renderiza o cualquiera de sus hijos un **side effects** puede afectar a elementos externos al propio DOM -> como son el document title, la location href o la propia red que utilizamos para la llamada a la API
+Si es al revés su orden, el resultado final sería el mismo y tendría implicaciones externas a la propia función que los define, mientras que un renderizado debería afectar sólo al nodo que se renderiza o cualquiera de sus hijos. Un **side effects** puede afectar a elementos externos al propio DOM -> como son el document title, la location href o a la propia red que utilizamos para la llamada a la API
 
 <br />
 
@@ -193,13 +191,12 @@ O puede ser al revés su orden, el resultado final sería el mismo y tendría im
   por ejemplo realizar esta búsqueda
 
 - <span className="list-icon">✅ </span> Detectar las acciones -> en que se divide
-  esta tarea, podemos considerar una acción como el mínimo de conjunto de operaciones
+  esta tarea. Podemos considerar una acción como el mínimo de conjuntos de operaciones
   necesarias para poder producir un resultado relevante. Cambiar el valor de una
-  variable es una operación pero no produce un resultado relevante por sí misma.
+  variable es una operación, pero no produce un resultado relevante por sí misma.
   Mientras que modificar el título del documento o modificar la url, aunque también
-  son simple operaciones, pero si que producen un resultado relevante, eso sería
-  la diferencia entre una operación y una acción como tal que puede incluir una o
-  varias operaciones.
+  son simples operaciones, producen un resultado relevante. Eso sería la diferencia
+  entre una operación y una acción como tal, que puede incluir una o varias operaciones.
 
 <br />
 
@@ -215,10 +212,10 @@ O puede ser al revés su orden, el resultado final sería el mismo y tendría im
 
 <br />
 
-👀 Lo más importante que hay que entender que elegir cuál es la acción principal, implica tomar
+👀 Lo más importante que hay que entender, es elegir cuál es la acción principal, implica tomar
 una decisión y que no siempre existe una única respuesta, En muchos casos la acción principal
 estará totalmente clara pero en otros sera algo completamente debatible y tendrá que determinarse
-en base a lo que nosotross consideramos más prioritario como en todo tenemos que tomar una decisión
+en base a lo que nosotros consideramos más prioritario. Como en todo tenemos que tomar una decisión
 y en base a ella actuar en consecuencia.
 
 <br />
@@ -246,15 +243,15 @@ const App = () => {
 export default App;
 ```
 
-Vamos a ver como podemos conseguir que valor de este contador
-cambie, el titulo de pestaña para indicar, aquí es donde tenemos que comenzar a analizar.
-Tenemos que comenzar a pensar en esa tarea, cual sería la tarea incrementar ese contador
+Vamos a ver como podemos conseguir que el valor de este contador
+cambie el titulo de pestaña para indicar el valor, aquí es donde tenemos que comenzar a analizar.
+Tenemos que comenzar a pensar en esa tarea, cual sería la tarea para incrementar ese contador
 y de esa tarea tenemos varias acciones.
 
 <br />
 
-- <span className="list-icon">✅ </span> este setCount sería una acción produce algún
-  resultado relevante -> si actualiza la interfaz
+- <span className="list-icon">✅ </span> este setCount sería una acción que produce
+  algún resultado relevante -> si actualiza la interfaz
 
 - <span className="list-icon">✅ </span> este document.title = count + 1 es una acción
   o no -> produce otro resultado relevante, en este caso actualizar el título de
@@ -262,9 +259,9 @@ y de esa tarea tenemos varias acciones.
 
 <br />
 
-Por lo tanto aquí tenemos una tarea que se divide en 2 acciones, ahora cual es la acción principal que terminamos aquí, por un lado tenemos el setCount que es actualizar el state se renderizar en pantalla. Aquí tenemos la respuesta visual más inmediata del usuario. Donde el usuario va a centrar su foco de atención, el **document.title** no tiene mucho sentido si actualizo la app, actualiza la pestaña una vez si quito el setCount y a partir de aquí no tiene mucho sentido, entonces podemos decir claramente que de las 2, la acción principal seria **setCount** y document.title = count + 1 sería un **side effect.**
+Por lo tanto aquí tenemos una tarea que se divide en 2 acciones, ahora cual es la acción principal que terminamos aquí, Por un lado tenemos el setCount que es actualizar el state y este se renderiza en pantalla. Aquí tenemos la respuesta visual más inmediata del usuario. Donde el usuario va a centrar su foco de atención, el **document.title** no tiene mucho sentido si actualizo la app, actualiza la pestaña una vez si quito el setCount y a partir de aquí no tiene mucho sentido, entonces podemos decir claramente que de las 2, la acción principal seria **setCount** y document.title = count + 1 sería un **side effect.**
 
-Sabiendo que es un side effects cual es problema de gestionarlo de esta manera, y ¿ por qué? no debemos hacerlo. Esto se ve claramente cuando comenzamos a añadir mas cosas a esta aplicación
+Sabiendo que es un side effects cual es problema de gestionarlo de esta manera y porque no debemos hacerlo. Esto se ve claramente cuando comenzamos a añadir mas cosas a esta aplicación.
 
 ```jsx
 import { useState } from "react";
@@ -299,12 +296,12 @@ export default App;
 
 <br />
 
-como veo aquí lo que estoy haciendo es traerme toda esta acción principal, que evidentemente
-no puedo quitarla de aquí el boton tiene que tener un acción principal, pero cada vez que
-modifico este contador tengo que venir acompañando con su side effects asociado es decir
+Como ven aquí lo que estoy haciendo es traer toda esta acción principal, que evidentemente
+no puedo quitarla de aquí. El boton tiene que tener un acción principal, pero cada vez que
+modifico este contador tengo que venir acompañando con su side effects asociado, es decir
 yo modifico este contador -> en el momento que yo haga este setCount tengo que venir detrás
 con el sideEffect y si hago este setCount en 10 sitios, tengo que asegurarme que esté sideEffects
-y todos los demás que tenga asociado se ejecutan siempre detrás y eso es algo que nos puede inducir a error.
+y todos los demás que tenga asociado se ejecutan siempre detrás y eso es algo que nos puede inducir a un error.
 
 <br />
 
@@ -321,8 +318,8 @@ y todos los demás que tenga asociado se ejecutan siempre detrás y eso es algo 
 
 <br />
 
-Pero qué pasa que por alguna acción casual hago un setCount y se me olvida poner este **document.title**
-en algún punto se nos olvida hacer esta pequeña modificación, lo que pasa con esto es que tenemos una App con
+¿ Pero qué pasa que por alguna acción casual hago un setCount y se me olvida poner este **document.title** ?
+Si algún punto se nos olvida hacer esta pequeña modificación, el reultado sería una App con
 un state inconsistente.
 
 <br />
@@ -332,32 +329,32 @@ Pero si aplico el **botón +2** -> solamente actualiza el contador y no hago el 
 
 <br />
 
-Ademas tenemos otro punto en contra con estos **side effects** hasta que no termina toda esta
+Ademas tenemos otro punto en contra con estos **side effects:** hasta que no termina toda esta
 acción el renderizado no se produce.
 Es decir este render no se inicia cuando hacemos setCount -> si no que tiene que esperar a este
 document.title en este caso es una operación muy sencilla.
 
 <br />
 
-Imagina que esto tarda medio segundo estaríamos bloqueando ese renderizado medio segundo, hasta que
-termina de hacer todo, lo cual no tiene sentido. Podemos priorizar la acción principal dejar que
-se produzca el renderizado, luego posteriormente cuando acabe el renderizado ya realizar todos
-esos sideEffects porque no nos importa ni el orden en que se ejecuten, ni nos importa exactamente
-el orden en que lo haga después de la acción principal y ante de la siguiente nos sirve perfectamente
-y da igual si es en medio segundo ante o medio segundo después, no hay ningún problema y para
+Imagina que esto tarda medio segundo, estaríamos bloqueando ese renderizado medio segundo, hasta que
+termine de hacer todo, lo cual no tiene sentido. Podemos priorizar la acción principal y dejar que
+se produzca el renderizado, posteriormente cuando acabe el renderizado ya realizar todos
+esos sideEffects, porque no nos importa ni el orden en que se ejecuten, ni nos importa exactamente
+el orden en que lo haga después de la acción principal y antes de la siguiente nos sirve perfectamente
+y da igual si es en medio segundo antes o medio segundo después, no hay ningún problema y para
 eso tenemos el hook de **useEffects.**
 
 <br />
 
 ## ⚓ useEffect
 
-👁️ Al ser un hook tiene que llamarse siempre dentro de un componente el primer parámetro que recibe este useEffect:
+👁️ Al ser un hook, tiene que llamarse siempre dentro de un componente el primer parámetro que recibe este useEffect:
 
 <br />
 
 - <span className="list-icon">✅ </span> <b>
-    es una función -> **se ejecutará siempre después del renderizado y que
-    tendrá los valores actualizados
+    es una función -> **se ejecutará siempre después del renderizado y tendrá
+    los valores actualizados
   </b>
 
 <br />
@@ -398,7 +395,7 @@ export default App;
 
 <br />
 
-ahora lo que conseguimos siempre que cambie el estado de count
+ahora lo que conseguimos es que cambie el estado de count
 
 <br />
 
@@ -410,7 +407,7 @@ useEffect(() => {
 
 <br />
 
-si lo hacemos con tanto con un **+1** o con un **+2,** siempre que cambie el **state de count,** da igual que lo hagamos desde un botón, desde otro o inclusive desde un tercero, provocaremos un **side effects** que consiga exactamente esto
+si lo hacemos con tanto con un **+1** o un **+2,** siempre que cambie el **state de count,** da igual que lo hagamos desde un botón, desde otro o inclusive desde un tercero, siempre provocaremos un **side effects** que consiga exactamente esto
 
 ```jsx
 import { useState } from "react";
@@ -465,15 +462,16 @@ export default App;
 
 <br />
 
-le doy +1,+2,+3
+Le doy +1,+2,+3
 
 <br />
 
-Lo que acabamos de hacer es vincular, este count a un side effects y nos da igual donde se ejecuta este count, nos da igual que si lo seteamos 1 2 o 7 veces da igual, no hay que preocuparse por esos side effects, vamos hacer un console.log(count) entendiéndolo como un pequeños side effects, no se habla de sideEffects porque no debería haber un console.log en producción, pero si ciertamente sería un pequeño side effects
+Lo que acabamos de hacer es vincular este count a un side effects y nos da igual donde se ejecuta este count, nos da igual que si lo seteamos 1 2 o 7 veces da igual, no hay que preocuparse por esos side effects, vamos hacer un console.log(count) entendiéndolo como un pequeño side effects. No se habla de sideEffects porque no debería haber un console.log en producción, pero si ciertamente sería como un pequeño side effects
+para explicar este ejemplo.
 
-## Ahora lo que tenemos que entender cuando se ejecuta este useEffects y ¿ por qué ? funciona así. por qué tiene los valores actualizados de {count}
+## Ahora lo que tenemos que entender ¿ Cuando se ejecuta este useEffects y por qué funciona así ? ¿ por qué tiene los valores actualizados de {count} ?
 
-vamos a ir analizando con los console.log() que es lo que sucede
+Vamos a ir analizando con los console.log() que es lo que sucede
 
 ```jsx
 import { useState } from "react";
@@ -521,7 +519,7 @@ const App = () => {
 export default App;
 ```
 
-Cuando nosotros carguemos nuestra App por primera vez inicialmente lo que vamos a provocar es el primer renderizado haremos este renderizado
+Cuando nosotros carguemos nuestra App por primera vez, inicialmente lo que vamos a provocar es el primer renderizado. Haremos este renderizado
 
 ```jsx
 console.log("%c 1: render antes useEffect ", "color: MediumSpringGreen");
@@ -536,13 +534,13 @@ useEffect(() => {
 console.log("%c 2: render después useEffect ", "color: LightCoral");
 ```
 
-lo cierto es que estamos definiendo una función pero no la estamos ejecutando, si te fijas le estamos pasando a useEffect una función
+Lo cierto es que estamos definiendo una función pero no la estamos ejecutando. Si se fijas le estamos pasando a useEffect una función,
 **no le estamos pasando su ejecución**
 entonces lo que va a pasar:
 
 <br />
 
-**1.** Primero renderiza este console log esta ante del useEffect
+**1.** Primero renderiza este console.log() antes del useEffect
 
 ```jsx
 console.log("%c 1: render antes useEffect ", "color: MediumSpringGreen");
@@ -557,7 +555,7 @@ useEffect(() => {
 });
 ```
 
-**3.** Posteriormente seguirá haciendo todo el render o finalmente retornara un valor
+**3.** Posteriormente seguirá haciendo todo el render o finalmente retornará un valor
 
 ```jsx
 console.log("%c 2: render después useEffect ", "color: LightCoral");
@@ -595,11 +593,11 @@ export default App;
 
 <br />
 
-Cuando retorne se pintara en nuestra pantalla por eso aparece en la **UI, 0 +1,+2,+3** el renderizado ya ha terminado.
+Cuando retorne se pintará en nuestra pantalla los botones de la **interfaz, el count 0, +1,+2 y +3** el renderizado ya ha terminado.
 
 <br />
 
-Los siguiente que hace React cuando termina el renderizado, es venir y decir durante este renderizado hay que ejecutar algún useEffect? la respuesta es que si, entonces ejecuta este useEffect ante que se produzca el siguiente renderizado y de esta manera podemos verlo en consola.
+Lo siguiente que hace React cuando termina el renderizado, es venir y decir ¿ durante este renderizado hay que ejecutar algún useEffect ? la respuesta es que si, entonces ejecuta este useEffect ante que se produzca el siguiente renderizado y de esta manera podemos verlo en consola.
 
 <br />
 
@@ -615,13 +613,13 @@ Cada vez que provoquemos un renderizado esto volverá a ser así.
 
 <br />
 
-**useEffect se ejecuta de forma asíncrona es decir, "no es inmediatamente" después del render de forma síncrona, si no que es de forma asíncrona y que implica que no podemos saber el momento exactamente cuando se ejecuta, podemos aproximarlo por que sabes que es después del render, pero no sabemos si es 10ms, 12ms etc.**
+**useEffect se ejecuta de forma asíncrona, es decir, "no es inmediatamente" después del render de forma síncrona, si no que es de forma asíncrona y que implica que no podemos saber el momento exacto cuando se ejecuta, podemos aproximarlo porque sabemos que es después del render, pero no sabemos si es 10ms, 12ms etc.**
 
-No es como **useLayaput** que ese si se ejecuta después del render forma síncrona, esto no nos importa, pero tiene sentido a la hora de hablar de métricas, podemos ver que hay un pequeño delay entre que se ejecuta y termina useEffect.
+No es como **useLayout** que ese si se ejecuta después del render forma síncrona, esto no nos importa, pero tiene sentido a la hora de hablar de métricas, podemos ver que hay un pequeño delay entre que se ejecuta y termina useEffect.
 
 <br />
 
-### useEffect sabemos que se ejecuta después de un render y se ejecuta ante del siguiente eso nos garantiza react
+### useEffect sabemos que se ejecuta después de un render y se ejecuta ante del siguiente, eso nos garantiza react
 
 Por eso es que este useEffect se ejecuta en el primer renderizado
 y por eso aquí aparece un 0. En este caso podríamos evitar que se ejecute en primer renderizado utilizando un sencillo if

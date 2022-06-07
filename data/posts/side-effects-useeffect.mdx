@@ -81,7 +81,7 @@ una función, esta función puede producir efectos secundarios, de ahí el nombr
 <br />
 
 **useEffect** recibe como segundo argumento después de la primer función un arreglo.
-En este arreglo puedes pasar variables que se usarán para determinar si el efecto debe ejecutarse o no.
+En **este arreglo puedes pasar variables que se usarán para determinar si el efecto debe ejecutarse o no.**
 En la documentación de React podemos ver un muy buen ejemplo:
 
 ```jsx import React, {(useState, useEffect)} from "react";
@@ -110,7 +110,7 @@ que el componente desaparezca de la interfaz.
 
 El principal objetivo de react es proporcionar la mejor experiencia de usuario posible y para eso
 hay que ser capaces de distinguir entre lo que es "importante y lo que es necesario" entre lo prioritario
-y lo que puede esperar
+y lo que puede esperar.
 
 <br />
 
@@ -119,7 +119,7 @@ y lo que puede esperar
 <br />
 
 Podemos establecer una premisa que la prioridad máxima cuando el usuario realiza una búsqueda
-es ofrecer esta respuesta oficial inmediata mostrando este spiner
+es ofrecer esta respuesta oficial inmediata mostrando este spiner.
 
 <br />
 
@@ -144,7 +144,7 @@ funcione completamente ejemplo de estas tareas:
 
 <br />
 
-![spinner](/static/images/consecuencias-useEffect.png)
+![Consecuencias useEffect](/static/images/consecuencias-useEffect.png)
 
 <br />
 
@@ -154,24 +154,497 @@ Desde el punto de vista del **usuario** todas estas acciones son secundarias.
 
 Desde del punto de vista del **desarrollador** son efectos secundarios **(side effects)** de la
 acción principal, para poderlos gestionarlos correctamente react nos proporciona el Hook de **useEffect "hook para efectos secundarios"**
-pero ante de ver como funciona hay entender a que nos referimos cuando hablamos de side effects
+pero ante de ver como funciona hay entender a que nos referimos cuando hablamos de side effects.
 
 ## Side effects
 
-<!-- ![primer-commit](/static/images/primer-commit.png "fork star")
+Consecuencia de otras acciones -> en este caso como consecuencia de un cambio de estado
 
 <br />
 
-📚 [git - la guía sencilla](https://rogerdudler.github.io/git-guide/index.es.html "git - la guía sencilla")
+- <span className="list-icon">☑️ </span> Se ejecuta siempre después de la acción
+  principal -> en este caso después del renderizado
+
+- <span className="list-icon">☑️ </span> El orden en que se ejecutan es irrelevante
+
+- <span className="list-icon">☑️ </span> implicaciones externas
 
 <br />
 
-## 🤩 Star y Fork ⭐
+En este caso podemos actualizar:
 
-Contento que este repositorio ya le ha servido a 28 personas, con eso estoy mas que pagado, el poder ayudar a esas personas que recién comienzan con git, ya que al principio hay muchos conceptos que no entendemos. Si quieres puedes
-compartir este repo con amigos que recién parten con git y dejarlo en alguna comunidad de discord donde hablen respecto a git.
-Gracias por los star y fork. Siéntete libre de compartir el repositorio, la idea es difundir todo lo que ha otros les pueda ayudar. -->
+<br />
 
+- <span className="list-icon">✅ </span> título
+- <span className="list-icon">✅ </span> URL
+- <span className="list-icon">✅ </span> llamada a la API
+
+<br />
+
+O puede ser al revés su orden, el resultado final sería el mismo y tendría implicaciones externas a la propia función que los define, mientras que un renderizado debería afectar sólo o al nodo que se renderiza o cualquiera de sus hijos un **side effects** puede afectar a elementos externos al propio DOM -> como son el document title, la location href o la propia red que utilizamos para la llamada a la API
+
+<br />
+
+📚 **side effects es el cambio de un estado principal**
+
+## Distinguir side effects
+
+- <span className="list-icon">✅ </span> Definir la tarea que vamos a realizar ->
+  por ejemplo realizar esta búsqueda
+
+- <span className="list-icon">✅ </span> Detectar las acciones -> en que se divide
+  esta tarea, podemos considerar una acción como el mínimo de conjunto de operaciones
+  necesarias para poder producir un resultado relevante. Cambiar el valor de una
+  variable es una operación pero no produce un resultado relevante por sí misma.
+  Mientras que modificar el título del documento o modificar la url, aunque también
+  son simple operaciones, pero si que producen un resultado relevante, eso sería
+  la diferencia entre una operación y una acción como tal que puede incluir una o
+  varias operaciones.
+
+<br />
+
+**Podemos entender estas acciones también como las distintas responsabilidades que existen dentro de la tarea**
+
+<br />
+
+- <span className="list-icon">✅ </span> Elegir la acción principal -> una vez tengamos
+  esta acción principal
+
+- <span className="list-icon">✅ </span> El resto de acciones serán side effects
+  (acción del usuario en la UI)
+
+<br />
+
+👀 Lo más importante que hay que entender que elegir cuál es la acción principal, implica tomar
+una decisión y que no siempre existe una única respuesta, En muchos casos la acción principal
+estará totalmente clara pero en otros sera algo completamente debatible y tendrá que determinarse
+en base a lo que nosotross consideramos más prioritario como en todo tenemos que tomar una decisión
+y en base a ella actuar en consecuencia.
+
+<br />
+
+```jsx
+import { useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+          document.title = count + 1;
+        }}
+      >
+        + 1
+      </button>
+    </div>
+  );
+};
+
+export default App;
 ```
 
+Vamos a ver como podemos conseguir que valor de este contador
+cambie, el titulo de pestaña para indicar, aquí es donde tenemos que comenzar a analizar.
+Tenemos que comenzar a pensar en esa tarea, cual sería la tarea incrementar ese contador
+y de esa tarea tenemos varias acciones.
+
+<br />
+
+- <span className="list-icon">✅ </span> este setCount sería una acción produce algún
+  resultado relevante -> si actualiza la interfaz
+
+- <span className="list-icon">✅ </span> este document.title = count + 1 es una acción
+  o no -> produce otro resultado relevante, en este caso actualizar el título de
+  la pestaña
+
+<br />
+
+Por lo tanto aquí tenemos una tarea que se divide en 2 acciones, ahora cual es la acción principal que terminamos aquí, por un lado tenemos el setCount que es actualizar el state se renderizar en pantalla. Aquí tenemos la respuesta visual más inmediata del usuario. Donde el usuario va a centrar su foco de atención, el **document.title** no tiene mucho sentido si actualizo la app, actualiza la pestaña una vez si quito el setCount y a partir de aquí no tiene mucho sentido, entonces podemos decir claramente que de las 2, la acción principal seria **setCount** y document.title = count + 1 sería un **side effect.**
+
+Sabiendo que es un side effects cual es problema de gestionarlo de esta manera, y ¿ por qué? no debemos hacerlo. Esto se ve claramente cuando comenzamos a añadir mas cosas a esta aplicación
+
+```jsx
+import { useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+          document.title = count + 1;
+        }}
+      >
+        + 1
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 2);
+          document.title = count + 2;
+        }}
+      >
+        + 2
+      </button>
+    </div>
+  );
+};
+
+export default App;
 ```
+
+<br />
+
+como veo aquí lo que estoy haciendo es traerme toda esta acción principal, que evidentemente
+no puedo quitarla de aquí el boton tiene que tener un acción principal, pero cada vez que
+modifico este contador tengo que venir acompañando con su side effects asociado es decir
+yo modifico este contador -> en el momento que yo haga este setCount tengo que venir detrás
+con el sideEffect y si hago este setCount en 10 sitios, tengo que asegurarme que esté sideEffects
+y todos los demás que tenga asociado se ejecutan siempre detrás y eso es algo que nos puede inducir a error.
+
+<br />
+
+😀 Actualizo y todo bien
+
+<br />
+
+<Image
+  src="/static/images/setcount2.png"
+  alt="setcount2"
+  width={190}
+  height={220}
+/>
+
+<br />
+
+Pero qué pasa que por alguna acción casual hago un setCount y se me olvida poner este **document.title**
+en algún punto se nos olvida hacer esta pequeña modificación, lo que pasa con esto es que tenemos una App con
+un state inconsistente.
+
+<br />
+
+Si aplico el **botón mas 1** -> tengo el 1 en la pestaña
+Pero si aplico el **botón +2** -> solamente actualiza el contador y no hago el document.title
+
+<br />
+
+Ademas tenemos otro punto en contra con estos **side effects** hasta que no termina toda esta
+acción el renderizado no se produce.
+Es decir este render no se inicia cuando hacemos setCount -> si no que tiene que esperar a este
+document.title en este caso es una operación muy sencilla.
+
+<br />
+
+Imagina que esto tarda medio segundo estaríamos bloqueando ese renderizado medio segundo, hasta que
+termina de hacer todo, lo cual no tiene sentido. Podemos priorizar la acción principal dejar que
+se produzca el renderizado, luego posteriormente cuando acabe el renderizado ya realizar todos
+esos sideEffects porque no nos importa ni el orden en que se ejecuten, ni nos importa exactamente
+el orden en que lo haga después de la acción principal y ante de la siguiente nos sirve perfectamente
+y da igual si es en medio segundo ante o medio segundo después, no hay ningún problema y para
+eso tenemos el hook de **useEffects.**
+
+<br />
+
+## ⚓ useEffect
+
+👁️ Al ser un hook tiene que llamarse siempre dentro de un componente el primer parámetro que recibe este useEffect:
+
+<br />
+
+- <span className="list-icon">✅ </span> <b>
+    es una función -> **se ejecutará siempre después del renderizado y que
+    tendrá los valores actualizados
+  </b>
+
+<br />
+
+```jsx
+import { useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = count; // este count ya está actualizado
+  });
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        + 1
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 2);
+        }}
+      >
+        + 2
+      </button>
+    </div>
+  );
+};
+
+export default App;
+```
+
+<br />
+
+ahora lo que conseguimos siempre que cambie el estado de count
+
+<br />
+
+```jsx
+useEffect(() => {
+  document.title = count; // este count ya esta actualizado
+});
+```
+
+<br />
+
+si lo hacemos con tanto con un **+1** o con un **+2,** siempre que cambie el **state de count,** da igual que lo hagamos desde un botón, desde otro o inclusive desde un tercero, provocaremos un **side effects** que consiga exactamente esto
+
+```jsx
+import { useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = count; // este count ya esta actualizado
+    console.log(count);
+  });
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        + 1
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 2);
+        }}
+      >
+        + 2
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 3);
+        }}
+      >
+        + 3
+      </button>
+    </div>
+  );
+};
+
+export default App;
+```
+
+<br />
+
+<Image
+  src="/static/images/setcount3.png"
+  alt="setcount3"
+  width={190}
+  height={220}
+/>
+
+<br />
+
+le doy +1,+2,+3
+
+<br />
+
+Lo que acabamos de hacer es vincular, este count a un side effects y nos da igual donde se ejecuta este count, nos da igual que si lo seteamos 1 2 o 7 veces da igual, no hay que preocuparse por esos side effects, vamos hacer un console.log(count) entendiéndolo como un pequeños side effects, no se habla de sideEffects porque no debería haber un console.log en producción, pero si ciertamente sería un pequeño side effects
+
+## Ahora lo que tenemos que entender cuando se ejecuta este useEffects y ¿ por qué ? funciona así. por qué tiene los valores actualizados de {count}
+
+vamos a ir analizando con los console.log() que es lo que sucede
+
+```jsx
+import { useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  console.log("%c 1: render antes useEffect ", "color: MediumSpringGreen");
+
+  useEffect(() => {
+    console.log("useEffect", count);
+    document.title = count; // este count ya esta actualizado
+  });
+
+  console.log("%c 2: render después useEffect ", "color: LightCoral");
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        + 1
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 2);
+        }}
+      >
+        + 2
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 3);
+        }}
+      >
+        + 3
+      </button>
+    </div>
+  );
+};
+
+export default App;
+```
+
+Cuando nosotros carguemos nuestra App por primera vez inicialmente lo que vamos a provocar es el primer renderizado haremos este renderizado
+
+```jsx
+console.log("%c 1: render antes useEffect ", "color: MediumSpringGreen");
+
+//luego llegaramos a este useEffect
+useEffect(() => {
+  console.log("useEffect", count);
+  document.title = count; // este cout ya está actualizado
+});
+
+//finalmente haremos este render después
+console.log("%c 2: render después useEffect ", "color: LightCoral");
+```
+
+lo cierto es que estamos definiendo una función pero no la estamos ejecutando, si te fijas le estamos pasando a useEffect una función
+**no le estamos pasando su ejecución**
+entonces lo que va a pasar:
+
+<br />
+
+**1.** Primero renderiza este console log esta ante del useEffect
+
+```jsx
+console.log("%c 1: render antes useEffect ", "color: MediumSpringGreen");
+```
+
+**2.** Vera este useEffect y dira de acuerdo me quedo con esta función, para ejecutarla después porque es un side effects
+
+```jsx
+useEffect(() => {
+  console.log("useEffect", count);
+  document.title = count; // este cout ya esta actualizado
+});
+```
+
+**3.** Posteriormente seguirá haciendo todo el render o finalmente retornara un valor
+
+```jsx
+console.log("%c 2: render después useEffect ", "color: LightCoral");
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        + 1
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 2);
+        }}
+      >
+        + 2
+      </button>
+      <button
+        onClick={() => {
+          setCount(count + 3);
+        }}
+      >
+        + 3
+      </button>
+    </div>
+  );
+};
+
+export default App;
+```
+
+<br />
+
+Cuando retorne se pintara en nuestra pantalla por eso aparece en la **UI, 0 +1,+2,+3** el renderizado ya ha terminado.
+
+<br />
+
+Los siguiente que hace React cuando termina el renderizado, es venir y decir durante este renderizado hay que ejecutar algún useEffect? la respuesta es que si, entonces ejecuta este useEffect ante que se produzca el siguiente renderizado y de esta manera podemos verlo en consola.
+
+<br />
+
+![console](/static/images/console.png)
+
+<br />
+
+Cada vez que provoquemos un renderizado esto volverá a ser así.
+
+<br />
+
+![console2](/static/images/console2.png)
+
+<br />
+
+**useEffect se ejecuta de forma asíncrona es decir, "no es inmediatamente" después del render de forma síncrona, si no que es de forma asíncrona y que implica que no podemos saber el momento exactamente cuando se ejecuta, podemos aproximarlo por que sabes que es después del render, pero no sabemos si es 10ms, 12ms etc.**
+
+No es como **useLayaput** que ese si se ejecuta después del render forma síncrona, esto no nos importa, pero tiene sentido a la hora de hablar de métricas, podemos ver que hay un pequeño delay entre que se ejecuta y termina useEffect.
+
+<br />
+
+### useEffect sabemos que se ejecuta después de un render y se ejecuta ante del siguiente eso nos garantiza react
+
+Por eso es que este useEffect se ejecuta en el primer renderizado
+y por eso aquí aparece un 0. En este caso podríamos evitar que se ejecute en primer renderizado utilizando un sencillo if
+
+```jsx
+useEffect(() => {
+  if (count === 0) return; //la fn() se ejecuta pero no produce resultado
+  console.log("useEffect", count);
+  document.title = count; // esté count ya esta actualizado
+});
+```
+
+<br />
+
+<Image
+  src="/static/images/console3.png"
+  alt="setcount2"
+  width={190}
+  height={450}
+/>
+
+### Por supuesto necesitamos mucho mayor control de cuando se debe ejecutar un useEffect o no. Eso lo podemos hacer con las dependencias.
+
+## 💻 Code Example useEffect
+
+[link code](https://codesandbox.io/s/useeffect-tq5wpx?file=/src/App.js)

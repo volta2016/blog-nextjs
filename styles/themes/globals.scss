@@ -52,3 +52,16 @@ img {
   width: 100%;
   object-fit: contain;
 }
+
+blockquote {
+  background-color: #f3f5f7;
+  border-color: map-get($colorMap, violet);
+  padding: 0.5rem 1.5rem;
+  border-left-width: 0.5rem;
+  border-left-style: solid;
+  margin: 1rem 0;
+}
+
+img.scale {
+  width: 200px!important;
+}

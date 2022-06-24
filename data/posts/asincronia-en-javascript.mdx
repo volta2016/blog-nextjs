@@ -1,7 +1,7 @@
 ---
 title: "Asincronía en JavaScript"
-image: "/static/images/side-effects-useeffect.jpg"
-cover: "/static/images/opengraph/side-effects-useeffect.jpg"
+image: "/static/images/asincronismo-en-javascript.png"
+cover: "/static/images/opengraph/asincronismo-en-javascript-cover.jpg"
 author: "/static/images/author-voltadev.png"
 nameauthor: "voltadev"
 published: "06-21-2022"
@@ -39,6 +39,9 @@ Ahí es donde entra en juego la 📲🤙 Asincronía que permite realizar largas
 - <span className="list-icon">✅</span> JavaScript fue diseñado para ser ejecutado
   en navegadores, trabajar con peticiones sobre la red y procesar las interacciones
   de usuario, al tiempo que mantiene una interfaz fluida.
+
+<br />
+
 - <span className="list-icon">✅</span> Javascript usa un modelo asíncrono y no bloqueante,
   con un loop de eventos implementado <b>en un sólo hilo, (single thread)</b> para
   operaciones de entrada y salida (input/output).
@@ -70,10 +73,18 @@ Con lo anterior en JavaScript podemos tener:
 
 - <span className="list-icon">✅</span> Operaciones CPU: Aquellas que pasan el mayor
   tiempo consumiendo Procesos del CPU, por ejemplo, la escritura de ficheros.
+
+<br />
+
 - <span className="list-icon">✅</span> Operaciones de Entrada y Salida: Aquellas
   que pasan la mayor parte del tiempo esperando la respuesta de una petición o recurso,
   como la solicitud a una API o BD.
+
+<br />
+
 - <span className="list-icon">✅</span> Concurrencia y Paralelismo.
+
+<br />
 
 **Concurrencia:** cuando dos o más tareas progresan simultáneamente.
 
@@ -113,3 +124,84 @@ ejecutándose de manera simultánea (Multi thread).
 > pasan a **"segundo plano"** y van a ser procesadas solo cuando el thread este desocupado. Entonces en realidad
 > todo se ejecuta secuencialmente pero lo que está en una promesa o en un await se ejecuta en un tiempo X, cuando
 > el thread este desocupado, y no lo bloquea, entonces si tiene que renderizar algo, lo puede hacer.
+
+## 💻 Programa función asíncrona
+
+Vamos a analisar el siguiente código y ver el comportamiento del código asíncrono
+gracias a la API del navegador.
+
+```js
+function resolAfter2Seconds() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("resolved");
+    }, 2000);
+  });
+}
+
+async function asyncCall() {
+  console.log("calling");
+  const result = await resolAfter2Seconds(); //esto sería una promesa? Si es la solución a la promesa
+  console.log(result);
+}
+
+asyncCall();
+```
+
+vamos a ver cómo se ejecuta el anterior programa paso a paso:
+
+<br />
+
+![Program Async Function](/static/images/program-async-function.png)
+
+<br />
+
+![event-loop](/static/images/event-loop.png)
+
+Como podemos ver en el gráfico el event loop o bucle de eventos es un proceso que espera a que la pila de llamadas se elimine
+antes de enviar devolucionesde llamada de la cola de tareas a la pila de llamadas. Una vez que la pila está limpia, el ciclo de eventos se activa y verifica la cola de tareas para ver si hay devoluciones de llamada disponibles.
+
+<br />
+
+- <span className="list-icon">✅</span> Las funciones son empujadas al call stack
+  cuando son invocadas y se sacan cuando devuelven un valor.
+
+<br />
+
+- <span className="list-icon">✅</span> El callback es añadido al call stack para
+  luego ser ejecutado. Una vez retorna un valor, este es sacado de call stack.
+
+<br />
+
+- <span className="list-icon">✅</span> El Event Loop mira hacia el callback queue
+  y al call stack. Si el call stack está vacío, este empuja el primer elemento de
+  la cola en el stack.
+
+## 👁️ Analizaremos la ejecución del código en memoria
+
+![Program Async Function](/static/images/program-async-function.png)
+
+# 🤓 Conclusiones
+
+**Proceso Asíncrono**
+La respuesta sucede a futuro, una operación asíncrona no esperará el resultado
+continua con el resto de tareas.
+
+<br />
+
+**Asíncrono:** cuando algo no depende de otra cosa para continuar eso es asíncrono (cuando ejecuta 2 o más cosas en paralelo)
+
+<br />
+
+**Síncrono:** la línea de abajo depende de línea de arriba en la ejecución del programa.
+
+<br />
+
+Bueno para finalizar les dejo un resumen de los conceptos que hemos aplicado en programa pero en simples palabras, espero
+que te sirva este post, estuve pensando mucho como mostrar este mapa gráfico, junto con el programa (código).
+Espero que haya ayudado.
+Para profundizar en el **event loop** les dejo la siguiente charla.
+
+<br />
+
+[Event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ)

@@ -1,7 +1,7 @@
 ---
 title: "Asincronía en JavaScript"
 image: "/static/images/asincronismo-en-javascript.png"
-cover: "/static/images/opengraph/asincronismo-en-javascript-cover.jpg"
+cover: "/static/images/opengraph/asincronismo-en-javascript-cover.png"
 author: "/static/images/author-voltadev.png"
 nameauthor: "voltadev"
 published: "06-21-2022"
@@ -21,7 +21,7 @@ sólo puede ejecutar una cosa a la vez.
 
 Si bien los idiomas de un sólo hilo simplifican la escritura de código,
 porque no tiene que preocuparse por los problemas de concurrencia, esto también
-significa que no puede realizar operaciones largas como el acceso a la red
+significa que no puede realizar operaciones largas como el acceso a la red,
 sin bloquear el hilo principal.
 
 <br />
@@ -71,18 +71,18 @@ Con lo anterior en JavaScript podemos tener:
 
 ## Operaciones de CPU y de Entrada y Salida
 
-- <span className="list-icon">✅</span> Operaciones CPU: Aquellas que pasan el mayor
-  tiempo consumiendo Procesos del CPU, por ejemplo, la escritura de ficheros.
+- <span className="list-icon">✅</span> <b>Operaciones CPU:</b> Aquellas que pasan
+  el mayor tiempo consumiendo Procesos del CPU, por ejemplo, la escritura de ficheros.
 
 <br />
 
-- <span className="list-icon">✅</span> Operaciones de Entrada y Salida: Aquellas
+- <span className="list-icon">✅</span> <b>Operaciones de Entrada y Salida:</b> Aquellas
   que pasan la mayor parte del tiempo esperando la respuesta de una petición o recurso,
   como la solicitud a una API o BD.
 
 <br />
 
-- <span className="list-icon">✅</span> Concurrencia y Paralelismo.
+- <span className="list-icon">✅</span> <b>Concurrencia y Paralelismo.</b>
 
 <br />
 
@@ -105,18 +105,15 @@ Se refiere a como la fase de espera de las operaciones afectan a nuestra aplicac
 <br />
 
 **No Bloqueante:** Son operaciones que devuelven inmediatamente el control a nuestra aplicación, independientemente del resultado de esta. En caso de que se haya completado,
-devolverá los datos solicitados. En caso contrario (si la operación no ha podido ser satisfecha) podría devolver un código de error.
+devolverá los datos solicitados. En caso contrario **si la operación no ha podido ser satisfecha** podría devolver un código de error.
 
 ## Single thread y Multi thread
 
-Un hilo la unidad básica de ejecución de un proceso, cada que abres un programa como el navegador
+Un hilo la unidad básica de ejecución de un proceso, cada que abres un programa, como el navegador
 o tu editor de código, se levanta un proceso en tu computadora e internamente este puede tener uno
 o varios hilos (threads) ejecutándose para que el proceso funcione.
 
 <br />
-
-La programación asíncrona se refiere a la ejecución de procesos
-ejecutándose de manera simultánea (Multi thread).
 
 > 👀 **Ojo, que no es Multi-Threading.** En JavaScript, existe un solo **Thread,** y el **asincronismo no crea otro thread.**
 > Los **"procesos"** no necesariamente se ejecutan de forma simultanea, sino que se delegan y se ejecutan en
@@ -127,8 +124,8 @@ ejecutándose de manera simultánea (Multi thread).
 
 ## 💻 Programa función asíncrona
 
-Vamos a analisar el siguiente código y ver el comportamiento del código asíncrono
-gracias a la API del navegador.
+Vamos a analisar el siguiente código y ver el comportamiento del código asíncrono.
+Gracias a la API del navegador nos brinda **setTimeout.**
 
 ```js
 function resolAfter2Seconds() {
@@ -158,7 +155,9 @@ vamos a ver cómo se ejecuta el anterior programa paso a paso:
 
 ![event-loop](/static/images/event-loop.png)
 
-Como podemos ver en el gráfico el event loop o bucle de eventos es un proceso que espera a que la pila de llamadas se elimine
+<br />
+
+Como podemos ver en el gráfico el **event loop o bucle de eventos** es un proceso que espera a que la pila de llamadas se elimine
 antes de enviar devolucionesde llamada de la cola de tareas a la pila de llamadas. Una vez que la pila está limpia, el ciclo de eventos se activa y verifica la cola de tareas para ver si hay devoluciones de llamada disponibles.
 
 <br />
@@ -179,9 +178,25 @@ antes de enviar devolucionesde llamada de la cola de tareas a la pila de llamada
 
 ## 👁️ Analizaremos la ejecución del código en memoria
 
-![Program Async Function](/static/images/program-async-function.png)
+![execution of memory](/static/images/execution-of-memory.png)
 
 # 🤓 Conclusiones
+
+Bueno para finalizar les dejo un resumen de los conceptos que hemos aplicado en programa pero en simples palabras, espero
+que te sirva este post, estuve pensando mucho como mostrar este mapa gráfico, junto con el programa (código).
+Espero que haya ayudado.
+Para profundizar en el **event loop** les dejo la siguiente charla.
+
+<br />
+
+📹 [Event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+
+<br />
+
+**La programación asíncrona se refiere a la ejecución de procesos
+ejecutándose de manera simultánea (Multi thread).**
+
+<br />
 
 **Proceso Asíncrono**
 La respuesta sucede a futuro, una operación asíncrona no esperará el resultado
@@ -194,14 +209,3 @@ continua con el resto de tareas.
 <br />
 
 **Síncrono:** la línea de abajo depende de línea de arriba en la ejecución del programa.
-
-<br />
-
-Bueno para finalizar les dejo un resumen de los conceptos que hemos aplicado en programa pero en simples palabras, espero
-que te sirva este post, estuve pensando mucho como mostrar este mapa gráfico, junto con el programa (código).
-Espero que haya ayudado.
-Para profundizar en el **event loop** les dejo la siguiente charla.
-
-<br />
-
-[Event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
